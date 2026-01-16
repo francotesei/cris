@@ -10,12 +10,47 @@
 
 ## Overview
 
-CRIS helps law enforcement solve crimes faster through AI-powered analysis:
+CRIS (Criminal Reasoning Intelligence System) is a multi-agent AI platform for criminal intelligence, investigation, and predictive analysis. It helps law enforcement agencies solve crimes faster by connecting evidence, profiling suspects, and predicting criminal behavior patterns.
 
-- **🔗 Connect Evidence**: Knowledge graphs reveal hidden relationships
-- **🎯 Profile Suspects**: FBI BAU-style behavioral analysis  
-- **📊 Predict Patterns**: Geospatial and temporal forecasting
-- **👁️ Analyze Statements**: Credibility and deception detection
+**Core Value Proposition:** Not just process what happened (reactive), but anticipate what could happen (proactive).
+
+## ✨ Key Capabilities
+
+### 🔗 Evidence & Case Linking
+- **Knowledge graphs** that reveal hidden relationships between cases, people, and evidence
+- **Serial pattern detection** by analyzing similar MO (modus operandi)
+- **Common suspect identification** across multiple cases
+- **Criminal network analysis** through community detection
+
+### 🎯 Criminal Profiling
+- **FBI BAU-style behavioral analysis** to generate psychological profiles
+- **Risk level assessment** for known suspects
+- **Recidivism prediction** based on history and profile
+- **Victimology analysis** to understand selection patterns
+
+### 🗺️ Geospatial Intelligence
+- **Crime hotspot maps** using kernel density estimation
+- **Geographic profiling** using Rossmo's formula
+- **Next location prediction** for suspects
+- **Temporal patterns** (time of day, day of week, seasonality)
+
+### 👁️ Witness Statement Analysis
+- **Automatic key fact extraction** from narrative statements
+- **Inconsistency detection** internal and cross-referenced
+- **Credibility assessment** based on linguistic indicators
+- **Deception indicator identification**
+- **Follow-up question generation**
+
+### 🔮 Predictions & Simulations
+- **Monte Carlo simulation** of suspect behavior
+- **Escalation prediction** to more serious crimes
+- **"What-if" scenario modeling**
+- **Crime trend forecasting**
+
+### 🌐 Open Source Intelligence (OSINT)
+- **Digital footprint analysis** on social media
+- **Online threat assessment**
+- **Digital contact network mapping**
 
 ## Architecture
 
@@ -94,6 +129,34 @@ uv run streamlit run app.py
 | **Witness Agent** | Statement analysis | `analyze_statement`, `detect_inconsistencies` |
 | **Predictor Agent** | Forecasting | `predict_next_action`, `model_scenarios` |
 | **OSINT Agent** | Digital intelligence | `analyze_digital_footprint`, `assess_online_threat` |
+
+## 📊 Usage Examples
+
+### Natural Language Queries
+CRIS understands natural language queries like:
+
+- *"Are there similar cases to this robbery in the south district?"*
+- *"Generate a suspect profile based on the crime scene"*
+- *"Where is the next incident most likely to occur?"*
+- *"Analyze inconsistencies between witness statements"*
+- *"What connections does this suspect have with other cases?"*
+
+### Typical Workflow
+
+1. **Case Upload** → Upload documents, photos, statements
+2. **Automatic Extraction** → Entities, locations, timeline
+3. **Multi-Agent Analysis** → Each agent processes its specialty
+4. **Result Synthesis** → Orchestrator combines insights
+5. **Visualization** → Graphs, maps, profiles, predictions
+
+## 🔒 Ethical Considerations
+
+CRIS is designed as a **support tool** for investigators, not a replacement for human judgment:
+
+- All predictions include **confidence levels**
+- Profiles are **hypotheses to verify**, not conclusions
+- The system maintains **traceability** of all decisions
+- Designed to **reduce bias**, not amplify it
 
 ## Documentation
 
