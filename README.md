@@ -19,24 +19,38 @@ CRIS helps law enforcement solve crimes faster through AI-powered analysis:
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    CRIS Multi-Agent System                   │
-├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│              ┌─────────────────────────────┐                │
-│              │     Orchestrator Agent      │                │
-│              │    (Gemini 3 + ADK)         │                │
-│              └──────────────┬──────────────┘                │
-│                             │                                │
-│                        A2A Protocol                          │
-│                             │                                │
-│    ┌────────┬───────┬──────┴──────┬───────┬────────┐       │
-│    ▼        ▼       ▼             ▼       ▼        ▼       │
-│  Link   Profiler  Geo-Intel  Witness  Predictor  OSINT     │
-│  Agent   Agent     Agent     Agent     Agent     Agent     │
-│                                                              │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph UI["🖥️ Streamlit UI"]
+        User([User Query])
+    end
+    
+    subgraph Orchestration["🧠 Orchestration Layer"]
+        Orch[Orchestrator Agent<br/>Gemini 3 + ADK]
+    end
+    
+    subgraph A2A["📡 A2A Protocol"]
+        Protocol{A2A<br/>Delegation}
+    end
+    
+    subgraph Agents["🤖 Specialized Agents"]
+        Link[Link Agent]
+        Profiler[Profiler Agent]
+        GeoIntel[Geo-Intel Agent]
+        Witness[Witness Agent]
+        Predictor[Predictor Agent]
+        OSINT[OSINT Agent]
+    end
+    
+    subgraph Data["💾 Data Layer"]
+        Neo4j[(Neo4j)]
+        Chroma[(ChromaDB)]
+    end
+    
+    User --> Orch
+    Orch --> Protocol
+    Protocol --> Link & Profiler & GeoIntel & Witness & Predictor & OSINT
+    Link & Profiler & GeoIntel & Witness & Predictor & OSINT --> Neo4j & Chroma
 ```
 
 ## Tech Stack

@@ -12,30 +12,60 @@ CRIS uses Google's latest AI infrastructure:
 
 ## Architecture
 
+```mermaid
+flowchart TB
+    subgraph System["CRIS Multi-Agent System"]
+        subgraph Orchestration["Orchestration Layer"]
+            Orch[🧠 Orchestrator Agent<br/>CRISOrchestratorAgent<br/>Gemini 3 + ADK]
+        end
+        
+        subgraph A2ALayer["A2A Protocol Layer"]
+            A2A{{"📡 A2A Protocol<br/>Task Routing & Communication"}}
+        end
+        
+        subgraph Specialists["Specialized Agents"]
+            Link[🔗 Link Agent<br/>Graph Analysis]
+            Profiler[🎯 Profiler Agent<br/>Behavioral Analysis]
+            GeoIntel[🗺️ Geo-Intel Agent<br/>Spatial Patterns]
+            Witness[👁️ Witness Agent<br/>Statement Analysis]
+            Predictor[📊 Predictor Agent<br/>Forecasting]
+            OSINT[🌐 OSINT Agent<br/>Digital Intel]
+        end
+    end
+    
+    User([👤 User]) --> Orch
+    Orch <--> A2A
+    A2A <--> Link & Profiler & GeoIntel & Witness & Predictor & OSINT
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                         CRIS Multi-Agent System                      │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                      │
-│  ┌─────────────────────────────────────────────────────────────┐   │
-│  │                    Orchestrator Agent                        │   │
-│  │                  (CRISOrchestratorAgent)                     │   │
-│  │                                                              │   │
-│  │  • Query Analysis & Intent Parsing                          │   │
-│  │  • Agent Delegation via A2A                                  │   │
-│  │  • Result Synthesis                                          │   │
-│  └──────────────────────┬──────────────────────────────────────┘   │
-│                         │                                           │
-│                    A2A Protocol                                     │
-│                         │                                           │
-│  ┌──────────┬──────────┼──────────┬──────────┬──────────┐         │
-│  ▼          ▼          ▼          ▼          ▼          ▼         │
-│ Link     Profiler   Geo-Intel  Witness   Predictor   OSINT        │
-│ Agent     Agent      Agent      Agent     Agent      Agent        │
-│                                                                      │
-│  Each agent: CRISADKAgent + Gemini 3 + A2A Agent Card             │
-│                                                                      │
-└─────────────────────────────────────────────────────────────────────┘
+
+## Agent Communication Flow
+
+```mermaid
+sequenceDiagram
+    participant U as 👤 User
+    participant O as 🧠 Orchestrator
+    participant A as 📡 A2A Registry
+    participant L as 🔗 Link Agent
+    participant P as 🎯 Profiler Agent
+    participant G as 🗺️ Geo-Intel Agent
+    
+    U->>O: "Analyze case CASE-2024-001"
+    O->>O: Parse Intent
+    O->>A: Discover Available Agents
+    A-->>O: Agent Cards
+    
+    par Parallel A2A Delegation
+        O->>L: Find similar cases
+        O->>P: Generate profile
+        O->>G: Analyze locations
+    end
+    
+    L-->>O: Similar cases found
+    P-->>O: Behavioral profile
+    G-->>O: Hotspot analysis
+    
+    O->>O: Synthesize Results
+    O-->>U: Comprehensive Report
 ```
 
 ## Core Components
@@ -79,6 +109,22 @@ A2AAgentCard(
 | **Predictor Agent** | `predict_next_action`, `assess_escalation_risk`, `model_scenarios` |
 | **OSINT Agent** | `analyze_digital_footprint`, `assess_online_threat`, `map_online_network` |
 
+## A2A Task Lifecycle
+
+```mermaid
+stateDiagram-v2
+    [*] --> Submitted: Task Created
+    Submitted --> Working: Agent Accepts
+    Working --> Completed: Success
+    Working --> Failed: Error
+    Working --> InputRequired: Need More Info
+    InputRequired --> Working: Info Provided
+    Completed --> [*]
+    Failed --> [*]
+    Working --> Canceled: User Cancel
+    Canceled --> [*]
+```
+
 ## Configuration
 
 ```env
@@ -113,25 +159,35 @@ streamlit run app.py
 
 ## File Structure
 
-```
-cris/
-├── core/
-│   ├── adk_agent.py      # ADK base classes
-│   └── a2a_server.py     # A2A protocol
-├── agents/
-│   ├── orchestrator.py   # Central coordinator
-│   ├── link_agent.py     # Graph analysis
-│   ├── profiler_agent.py # Behavioral profiling
-│   ├── geo_intel_agent.py
-│   ├── witness_agent.py
-│   ├── predictor_agent.py
-│   └── osint_agent.py
-├── config/
-│   ├── settings.py
-│   └── prompts.py
-└── ui/
-    └── components/
-        └── chat_interface.py
+```mermaid
+flowchart LR
+    subgraph Core["core/"]
+        ADK[adk_agent.py]
+        A2A[a2a_server.py]
+    end
+    
+    subgraph Agents["agents/"]
+        Orch[orchestrator.py]
+        Link[link_agent.py]
+        Prof[profiler_agent.py]
+        Geo[geo_intel_agent.py]
+        Wit[witness_agent.py]
+        Pred[predictor_agent.py]
+        OS[osint_agent.py]
+    end
+    
+    subgraph Config["config/"]
+        Set[settings.py]
+        Prom[prompts.py]
+    end
+    
+    subgraph UIDir["ui/"]
+        Chat[chat_interface.py]
+    end
+    
+    Core --> Agents
+    Config --> Agents
+    Agents --> UIDir
 ```
 
 ## Dependencies

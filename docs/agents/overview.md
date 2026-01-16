@@ -61,20 +61,23 @@ Digital footprint and open-source intelligence.
 
 ## A2A Communication
 
-Agents communicate via the A2A protocol:
-
-```
-User Query
-    ↓
-Orchestrator (analyzes intent)
-    ↓
-A2A Delegation → [Link, Profiler, Geo-Intel, ...]
-    ↓
-Parallel Processing
-    ↓
-Result Synthesis
-    ↓
-Response
+```mermaid
+flowchart TB
+    User([👤 User Query]) --> Orch[🧠 Orchestrator<br/>Analyzes Intent]
+    
+    Orch --> A2A{📡 A2A<br/>Delegation}
+    
+    A2A --> Link[🔗 Link]
+    A2A --> Profiler[🎯 Profiler]
+    A2A --> GeoIntel[🗺️ Geo-Intel]
+    A2A --> Witness[👁️ Witness]
+    A2A --> Predictor[📊 Predictor]
+    A2A --> OSINT[🌐 OSINT]
+    
+    Link & Profiler & GeoIntel & Witness & Predictor & OSINT --> Parallel[⚡ Parallel Processing]
+    
+    Parallel --> Synthesis[📋 Result Synthesis]
+    Synthesis --> Response([📄 Response])
 ```
 
 Each agent publishes an **Agent Card** for discovery:
