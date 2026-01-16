@@ -6,6 +6,8 @@
 
 > Multi-agent AI platform for criminal intelligence powered by **Gemini 3 + ADK + A2A**
 
+**Built for the Google DeepMind Gemini 3 Hackathon** 🚀
+
 ## Overview
 
 CRIS helps law enforcement solve crimes faster through AI-powered analysis:

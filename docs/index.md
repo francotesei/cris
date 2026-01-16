@@ -35,4 +35,4 @@ CRIS is an investigative **assistant**. All analyses should be verified by profe
 
 ---
 
-**Built with ❤️ for justice**
+**Built for the Google DeepMind Gemini 3 Hackathon** 🚀
