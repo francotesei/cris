@@ -1,0 +1,36 @@
+[
+    {
+        "id": "CASE-2024-001",
+        "title": "Jewelry Store Armed Robbery",
+        "description": "Two suspects entered 'Golden Vault' at 14:30. One brandished a handgun. Stole approximately $200k in watches.",
+        "status": "open",
+        "crime_type": "robbery",
+        "date_occurred": "2024-01-15T14:30:00",
+        "jurisdiction": "Central District",
+        "priority": 5,
+        "location": {
+            "address": "456 Luxury Row, Metropolis",
+            "lat": 40.7128,
+            "lon": -74.0060
+        },
+        "persons": [
+            {
+                "name": "Sarah Jenkins",
+                "role": "witness",
+                "statement": "I saw a gray sedan speeding away. The driver had a distinctive tattoo on his neck."
+            },
+            {
+                "name": "Unknown Male 1",
+                "role": "suspect",
+                "description": "Height 6'0, wearing blue hoodie, military boots."
+            }
+        ],
+        "evidence": [
+            {
+                "type": "video",
+                "description": "CCTV footage from store interior",
+                "file_path": "/data/evidence/cctv_001.mp4"
+            }
+        ]
+    }
+]

@@ -1,0 +1,1 @@
+"""CRIS UI Page initialization."""

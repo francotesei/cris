@@ -1,0 +1,70 @@
+site_name: CRIS - Criminal Reasoning Intelligence System
+site_description: Multi-agent AI platform for criminal intelligence and investigation
+site_author: CRIS Contributors
+repo_url: https://github.com/cris-project/cris
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Architecture: architecture.md
+  - Configuration: configuration.md
+  - Agents:
+      - Overview: agents/overview.md
+      - Creating Agents: agents/creating-agents.md
+      - Agent API: agents/agent-api.md
+  - Plugins:
+      - Overview: plugins/overview.md
+      - Creating Plugins: plugins/creating-plugins.md
+      - Plugin API: plugins/plugin-api.md
+  - API Reference:
+      - Models: api/models.md
+      - Services: api/services.md
+      - Database: api/database.md
+  - Deployment:
+      - Docker: deployment/docker.md
+      - Kubernetes: deployment/kubernetes.md
+      - Production: deployment/production.md
