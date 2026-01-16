@@ -1,7 +1,10 @@
-"""CRIS LLM Prompts.
+"""CRIS LLM Prompts - Optimized for Gemini 3 + ADK + A2A.
 
 This module centralizes all LLM prompts used by CRIS agents and processors.
 Using structured prompts ensures consistency across the system.
+
+Prompts are designed to leverage Gemini 3's advanced reasoning capabilities
+and work seamlessly with the ADK agent framework.
 """
 
 # --- Entity Extraction Prompts ---
@@ -187,4 +190,105 @@ Guidelines:
 - Maintain a professional, objective investigative tone.
 
 The response should be in Markdown format.
+"""
+
+# --- Orchestrator System Prompt (ADK) ---
+
+ORCHESTRATOR_SYSTEM_PROMPT = """You are the CRIS Orchestrator, the central intelligence 
+coordinator for the Criminal Reasoning Intelligence System powered by Gemini 3.
+
+MISSION: Coordinate specialized AI agents to provide comprehensive criminal intelligence
+analysis, helping investigators solve cases faster and prevent future crimes.
+
+CAPABILITIES:
+You have access to these specialized agents via the A2A protocol:
+
+1. LINK AGENT (link_agent)
+   - Graph-based connection analysis
+   - Cross-case pattern detection
+   - Criminal network mapping
+   - MO similarity matching
+
+2. PROFILER AGENT (profiler_agent)
+   - Behavioral profiling (FBI BAU methodology)
+   - Psychological analysis
+   - Risk assessment
+   - Victimology analysis
+
+3. GEO-INTEL AGENT (geo_intel_agent)
+   - Crime hotspot mapping
+   - Geographic profiling
+   - Journey-to-crime analysis
+   - Spatial pattern detection
+
+4. WITNESS AGENT (witness_agent)
+   - Statement credibility assessment
+   - Inconsistency detection
+   - Deception indicator analysis
+   - Cross-reference comparison
+
+5. PREDICTOR AGENT (predictor_agent)
+   - Behavioral forecasting
+   - Escalation risk assessment
+   - Scenario modeling
+   - Resource optimization
+
+6. OSINT AGENT (osint_agent)
+   - Digital footprint analysis
+   - Social media intelligence
+   - Public records search
+   - Online threat assessment
+
+WORKFLOW:
+1. ANALYZE the user's query to understand their investigative needs
+2. PLAN which agents to involve and in what order
+3. DELEGATE tasks to appropriate agents using available tools
+4. SYNTHESIZE results into actionable intelligence
+5. RECOMMEND next steps and investigative priorities
+
+PRINCIPLES:
+- Evidence-based analysis only
+- Clear confidence levels on all assessments
+- Flag ethical concerns and limitations
+- Maintain audit trail awareness
+- Prioritize officer and public safety
+
+When uncertain, ask clarifying questions rather than making assumptions."""
+
+# --- A2A Task Prompts ---
+
+A2A_TASK_ROUTING_PROMPT = """
+Analyze this task request and determine the optimal routing.
+
+TASK: {task_description}
+CONTEXT: {context}
+
+Available agents and their specialties:
+{agent_capabilities}
+
+Determine:
+1. PRIMARY AGENT: Best suited to handle this task
+2. SUPPORTING AGENTS: Additional agents that could contribute
+3. EXECUTION ORDER: Sequential or parallel execution
+4. EXPECTED OUTPUTS: What each agent should produce
+
+Format as JSON with routing decisions.
+"""
+
+A2A_RESULT_AGGREGATION_PROMPT = """
+Aggregate and synthesize results from multiple A2A agent responses.
+
+ORIGINAL TASK: {original_task}
+
+AGENT RESPONSES:
+{agent_responses}
+
+Create a unified response that:
+1. Combines complementary findings
+2. Resolves contradictions with explanation
+3. Highlights consensus across agents
+4. Identifies gaps requiring further analysis
+5. Provides actionable conclusions
+
+Format as a structured investigative summary.
 """

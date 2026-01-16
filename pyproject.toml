@@ -1,12 +1,12 @@
 [project]
 name = "cris"
-version = "0.1.0"
-description = "Criminal Reasoning Intelligence System - Multi-agent AI platform for criminal intelligence and investigation"
+version = "0.2.0"
+description = "Criminal Reasoning Intelligence System - Multi-agent AI platform for criminal intelligence and investigation powered by Gemini 3 + ADK + A2A"
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.11"
 authors = [{ name = "CRIS Contributors" }]
-keywords = ["criminal-intelligence", "multi-agent", "ai", "investigation", "neo4j", "knowledge-graph"]
+keywords = ["criminal-intelligence", "multi-agent", "ai", "investigation", "neo4j", "knowledge-graph", "gemini", "adk", "a2a"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -27,8 +27,15 @@ dependencies = [
     "neo4j>=5.17.0",
     "chromadb>=0.4.22",
     
-    # LLM & AI
-    "google-generativeai>=0.4.0",
+    # Google ADK & Gemini 3
+    "google-adk>=1.0.0",
+    "google-genai>=1.0.0",
+    
+    # A2A Protocol
+    "a2a-sdk>=0.2.0",
+    
+    # Legacy LLM support (for fallback)
+    "google-generativeai>=0.8.0",
     "openai>=1.12.0",
     "anthropic>=0.18.0",
     "sentence-transformers>=2.3.0",

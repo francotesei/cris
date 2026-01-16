@@ -2,6 +2,8 @@
 
 This module uses Pydantic Settings to manage application configuration
 via environment variables and .env files.
+
+Optimized for Gemini 3 + ADK + A2A architecture.
 """
 
 from typing import List, Optional
@@ -11,14 +13,30 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     """CRIS Application Settings."""
 
-    # LLM Configuration
-    llm_provider: str = "gemini"  # gemini, openai, anthropic
+    # Gemini 3 / ADK Configuration
     google_api_key: Optional[str] = None
+    gemini_model: str = "gemini-2.0-flash"  # Gemini 3 (API name: gemini-2.0-flash)
+    gemini_temperature: float = 0.7
+    gemini_max_tokens: int = 8192
+    
+    # ADK Configuration
+    adk_enable_tracing: bool = True
+    adk_session_timeout: int = 3600
+    adk_max_tool_calls: int = 10
+    
+    # A2A Protocol Configuration
+    a2a_enable: bool = True
+    a2a_server_port: int = 8080
+    a2a_protocol_version: str = "0.2"
+    a2a_enable_streaming: bool = True
+    
+    # Legacy LLM Configuration (for fallback/comparison)
+    llm_provider: str = "gemini"  # gemini, openai, anthropic
     openai_api_key: Optional[str] = None
     anthropic_api_key: Optional[str] = None
-    llm_model: str = "gemini-1.5-pro"
+    llm_model: str = "gemini-2.0-flash"  # Updated to Gemini 3
     llm_temperature: float = 0.7
-    llm_max_tokens: int = 4096
+    llm_max_tokens: int = 8192
 
     # Neo4j Configuration
     neo4j_uri: str = "bolt://localhost:7687"

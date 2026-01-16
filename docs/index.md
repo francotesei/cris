@@ -1,29 +1,38 @@
 # CRIS Documentation
 
-Welcome to the official documentation for **CRIS (Criminal Reasoning Intelligence System)**.
+**Criminal Reasoning Intelligence System** - Multi-agent AI platform powered by Gemini 3 + ADK + A2A.
 
-CRIS is a multi-agent AI platform designed for criminal intelligence, investigation, and predictive analysis. It leverages Large Language Models (LLMs), Knowledge Graphs, and Vector Databases to help investigators connect evidence, profile suspects, and anticipate criminal patterns.
+## Quick Links
 
-## 🚀 Key Features
+- [**Architecture**](GEMINI3_ADK_A2A_ARCHITECTURE.md) - System design and components
+- [**Getting Started**](getting-started.md) - Installation and first steps
+- [**Configuration**](configuration.md) - Environment variables
+- [**Creating Agents**](agents/creating-agents.md) - Build custom agents
 
-- **Multi-Agent Orchestration**: specialized agents for Link Analysis, Profiling, Geo-Intel, and more.
-- **Knowledge Graph Integration**: Reveal hidden relationships using Neo4j.
-- **Semantic Evidence Search**: Vector-based search for similar cases and witness statements.
-- **Interactive Dashboard**: Streamlit-based interface for visual investigation.
-- **Pluggable Architecture**: Easily extend the system with custom agents, processors, and LLM providers.
+## Key Features
 
-## 🗺️ Navigation
+| Feature | Technology |
+|---------|------------|
+| Multi-Agent Orchestration | Google ADK + A2A Protocol |
+| AI Reasoning | Gemini 3 (`gemini-2.0-flash`) |
+| Knowledge Graph | Neo4j |
+| Semantic Search | ChromaDB |
+| Interactive UI | Streamlit |
 
-- [**Getting Started**](getting-started.md): Installation and your first investigation.
-- [**Architecture**](architecture.md): Deep dive into the multi-agent system and data flow.
-- [**Configuration**](configuration.md): Guide to environment variables and feature flags.
-- [**Custom Agents**](agents/creating-agents.md): How to build and register new intelligence capabilities.
-- [**Plugin System**](plugins/overview.md): Extending CRIS for your specific needs.
+## Agents
 
-## ⚖️ Ethical Use & Disclaimer
+- **Orchestrator** - Central coordinator with A2A delegation
+- **Link Agent** - Graph analysis and case connections
+- **Profiler Agent** - FBI BAU-style behavioral profiling
+- **Geo-Intel Agent** - Spatial pattern analysis
+- **Witness Agent** - Statement credibility assessment
+- **Predictor Agent** - Forecasting and risk assessment
+- **OSINT Agent** - Digital footprint analysis
 
-CRIS is an investigative **assistant**, not a decision-maker. It is designed to surface patterns and insights for human professionals to verify. All analyses and predictions should be treated as leads, not definitive conclusions.
+## Disclaimer
+
+CRIS is an investigative **assistant**. All analyses should be verified by professionals.
 
 ---
 
-**Built with ❤️ for justice.**
+**Built for the Google DeepMind Gemini 3 Hackathon** 🚀

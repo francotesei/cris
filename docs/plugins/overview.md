@@ -1,34 +1,49 @@
 # Plugin System
 
-CRIS is designed as an open-source platform where the community can share new capabilities through plugins.
+Extend CRIS with custom plugins.
 
-## 📁 Plugin Structure
-
-Plugins live in the `plugins/` directory. Each plugin is a Python package.
+## Structure
 
 ```
 plugins/
-└── my_special_plugin/
+└── my_plugin/
     ├── __init__.py
-    ├── agent.py          # Custom agents
-    ├── processor.py      # Custom document processors
-    └── provider.py       # Custom LLM providers
+    └── agent.py
 ```
 
-## 🔌 How it Works
+## Creating a Plugin
 
-1. **Discovery**: At startup, CRIS scans the `plugins/` folder for any subdirectories containing an `__init__.py`.
-2. **Loading**: It imports each package, which triggers any decorators (`@ComponentRegistry.register_...`).
-3. **Availability**: Once loaded, these components are indistinguishable from built-in ones.
+```python
+# plugins/my_plugin/agent.py
+from core.adk_agent import CRISADKAgent, CRISToolResult
 
-## 🛠️ Creating a Plugin
+class MyPluginAgent(CRISADKAgent):
+    name = "my_plugin_agent"
+    description = "Custom analysis"
+    
+    def get_tools(self):
+        return [self.analyze]
+    
+    async def analyze(self, data: str) -> CRISToolResult:
+        return CRISToolResult(success=True, data={})
+```
 
-See the [Plugin Development Guide](../plugins/README.md) for a detailed technical walkthrough.
+```python
+# plugins/my_plugin/__init__.py
+from .agent import MyPluginAgent
+__all__ = ["MyPluginAgent"]
+```
 
-## 📦 Sharing Plugins
+## Loading
 
-To share a plugin, simply zip your plugin directory. Other users can install it by dropping it into their `plugins/` folder and restarting CRIS.
+Plugins are auto-discovered from `plugins/` at startup.
 
-## 🔒 Security Note
+Enable specific plugins in `.env`:
 
-Only install plugins from trusted sources. Since plugins are regular Python code, they have the same permissions as the main CRIS application.
+```env
+ENABLED_PLUGINS=my_plugin
+```
+
+## Security
+
+Only install plugins from trusted sources.
