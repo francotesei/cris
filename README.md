@@ -15,8 +15,6 @@ CRIS helps law enforcement solve crimes faster through AI-powered analysis:
 - **📊 Predict Patterns**: Geospatial and temporal forecasting
 - **👁️ Analyze Statements**: Credibility and deception detection
 
-**Built for the Google DeepMind Gemini 3 Hackathon** 🚀
-
 ## Architecture
 
 ```mermaid
@@ -97,7 +95,7 @@ uv run streamlit run app.py
 
 ## Documentation
 
-- [Architecture](docs/GEMINI3_ADK_A2A_ARCHITECTURE.md) - Full technical details
+- [Architecture](docs/architecture.md) - Full technical details
 - [Getting Started](docs/getting-started.md) - Setup guide
 - [Creating Agents](docs/agents/creating-agents.md) - Extend CRIS
 

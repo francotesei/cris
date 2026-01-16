@@ -4,7 +4,7 @@
 
 ## Quick Links
 
-- [**Architecture**](GEMINI3_ADK_A2A_ARCHITECTURE.md) - System design and components
+- [**Architecture**](architecture.md) - System design and components
 - [**Getting Started**](getting-started.md) - Installation and first steps
 - [**Configuration**](configuration.md) - Environment variables
 - [**Creating Agents**](agents/creating-agents.md) - Build custom agents
@@ -35,4 +35,4 @@ CRIS is an investigative **assistant**. All analyses should be verified by profe
 
 ---
 
-**Built for the Google DeepMind Gemini 3 Hackathon** 🚀
+**Built with ❤️ for justice**

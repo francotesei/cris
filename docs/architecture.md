@@ -1,8 +1,14 @@
 # CRIS Architecture
 
-> For complete technical details, see [GEMINI3_ADK_A2A_ARCHITECTURE.md](GEMINI3_ADK_A2A_ARCHITECTURE.md)
+## Overview
 
-## System Overview
+CRIS uses Google's latest AI infrastructure:
+
+- **Gemini 3** (`gemini-2.0-flash`): Advanced reasoning model
+- **ADK** (Agent Development Kit): Framework for autonomous agents
+- **A2A** (Agent-to-Agent Protocol): Inter-agent communication
+
+## System Architecture
 
 ```mermaid
 flowchart TB
@@ -14,27 +20,20 @@ flowchart TB
     end
     
     subgraph Orchestration["🧠 Orchestration Layer"]
-        Orch[Orchestrator Agent<br/>CRISOrchestratorAgent]
-        
-        subgraph OrchestratorFeatures[" "]
-            QA[Query Analysis]
-            AD[Agent Delegation A2A]
-            RS[Result Synthesis]
-            SM[Session Management]
-        end
+        Orch[Orchestrator Agent<br/>CRISOrchestratorAgent<br/>Gemini 3 + ADK]
     end
     
     subgraph A2A["📡 A2A Protocol Layer"]
-        Protocol{{"A2A Protocol"}}
+        Protocol{{"A2A Protocol<br/>Task Routing & Communication"}}
     end
     
     subgraph Agents["🤖 Specialized Agents"]
-        Link[Link Agent]
-        Profiler[Profiler Agent]
-        GeoIntel[Geo-Intel Agent]
-        Witness[Witness Agent]
-        Predictor[Predictor Agent]
-        OSINT[OSINT Agent]
+        Link[🔗 Link Agent<br/>Graph Analysis]
+        Profiler[🎯 Profiler Agent<br/>Behavioral Analysis]
+        GeoIntel[🗺️ Geo-Intel Agent<br/>Spatial Patterns]
+        Witness[👁️ Witness Agent<br/>Statement Analysis]
+        Predictor[📊 Predictor Agent<br/>Forecasting]
+        OSINT[🌐 OSINT Agent<br/>Digital Intel]
     end
     
     subgraph Data["💾 Data & Service Layer"]
@@ -44,53 +43,152 @@ flowchart TB
     end
     
     UI --> Orch
-    Orch --> Protocol
-    Protocol --> Link & Profiler & GeoIntel & Witness & Predictor & OSINT
+    Orch <--> Protocol
+    Protocol <--> Link & Profiler & GeoIntel & Witness & Predictor & OSINT
     Agents --> Neo4j & Chroma & LLM
+```
+
+## Agent Communication Flow
+
+```mermaid
+sequenceDiagram
+    participant U as 👤 User
+    participant O as 🧠 Orchestrator
+    participant A as 📡 A2A Registry
+    participant L as 🔗 Link Agent
+    participant P as 🎯 Profiler Agent
+    participant G as 🗺️ Geo-Intel Agent
+    
+    U->>O: "Analyze case CASE-2024-001"
+    O->>O: Parse Intent
+    O->>A: Discover Available Agents
+    A-->>O: Agent Cards
+    
+    par Parallel A2A Delegation
+        O->>L: Find similar cases
+        O->>P: Generate profile
+        O->>G: Analyze locations
+    end
+    
+    L-->>O: Similar cases found
+    P-->>O: Behavioral profile
+    G-->>O: Hotspot analysis
+    
+    O->>O: Synthesize Results
+    O-->>U: Comprehensive Report
 ```
 
 ## Core Components
 
-### 1. ADK Agent Base (`core/adk_agent.py`)
-- `CRISADKAgent`: Base class for all agents
-- `CRISOrchestratorAgent`: Orchestrator with delegation
-- `AgentCard`: A2A capability advertisement
+### CRISADKAgent (`core/adk_agent.py`)
 
-### 2. A2A Protocol (`core/a2a_server.py`)
+Base class for all agents:
+
+```python
+class CRISADKAgent:
+    name: str
+    description: str
+    model: str = "gemini-2.0-flash"
+    
+    def get_tools(self) -> List[Callable]
+    async def run(self, query: str, ...) -> Dict[str, Any]
+    def get_agent_card(self) -> AgentCard
+```
+
+### A2A Protocol (`core/a2a_server.py`)
+
+Inter-agent communication:
+
 - `A2AHandler`: Process incoming tasks
 - `A2AClient`: Communicate with remote agents
 - `A2ARegistry`: Local agent discovery
 
-### 3. Data Layer
+```python
+A2AAgentCard(
+    name="profiler_agent",
+    description="Behavioral profiling",
+    skills=[A2ASkill(id="generate_profile", name="Generate Profile", ...)]
+)
+```
+
+### Data Layer
+
 - **Neo4j**: Knowledge graph (entities, relationships)
 - **ChromaDB**: Vector embeddings for semantic search
 
-## Data Flow
+## Agents & Tools
+
+| Agent | Key Tools |
+|-------|-----------|
+| **Orchestrator** | `delegate_to_agent`, `synthesize_results`, `analyze_case` |
+| **Link Agent** | `find_similar_cases`, `analyze_criminal_network`, `detect_serial_patterns` |
+| **Profiler Agent** | `generate_full_profile`, `assess_risk_level`, `analyze_victimology` |
+| **Geo-Intel Agent** | `generate_hotspot_map`, `create_geographic_profile`, `predict_next_location` |
+| **Witness Agent** | `analyze_statement`, `detect_inconsistencies`, `assess_credibility` |
+| **Predictor Agent** | `predict_next_action`, `assess_escalation_risk`, `model_scenarios` |
+| **OSINT Agent** | `analyze_digital_footprint`, `assess_online_threat`, `map_online_network` |
+
+## A2A Task Lifecycle
 
 ```mermaid
-sequenceDiagram
-    participant U as User
-    participant O as Orchestrator
-    participant A2A as A2A Protocol
-    participant Agents as Specialized Agents
-    participant DB as Neo4j/ChromaDB
-    
-    U->>O: Query
-    O->>O: Analyze Intent
-    O->>A2A: Delegate Tasks
-    
-    par Parallel Processing
-        A2A->>Agents: Link Agent Task
-        A2A->>Agents: Profiler Agent Task
-        A2A->>Agents: Other Agents...
+stateDiagram-v2
+    [*] --> Submitted: Task Created
+    Submitted --> Working: Agent Accepts
+    Working --> Completed: Success
+    Working --> Failed: Error
+    Working --> InputRequired: Need More Info
+    InputRequired --> Working: Info Provided
+    Completed --> [*]
+    Failed --> [*]
+    Working --> Canceled: User Cancel
+    Canceled --> [*]
+```
+
+## Configuration
+
+```env
+# Required
+GOOGLE_API_KEY=your_key_here
+
+# Gemini 3
+GEMINI_MODEL=gemini-2.0-flash
+
+# A2A
+A2A_ENABLE=true
+A2A_ENABLE_STREAMING=true
+```
+
+## File Structure
+
+```mermaid
+flowchart LR
+    subgraph Core["core/"]
+        ADK[adk_agent.py]
+        A2A[a2a_server.py]
     end
     
-    Agents->>DB: Query Data
-    DB-->>Agents: Results
-    Agents-->>A2A: Agent Results
-    A2A-->>O: Aggregated Results
-    O->>O: Synthesize
-    O-->>U: Final Response
+    subgraph Agents["agents/"]
+        Orch[orchestrator.py]
+        Link[link_agent.py]
+        Prof[profiler_agent.py]
+        Geo[geo_intel_agent.py]
+        Wit[witness_agent.py]
+        Pred[predictor_agent.py]
+        OS[osint_agent.py]
+    end
+    
+    subgraph Config["config/"]
+        Set[settings.py]
+        Prom[prompts.py]
+    end
+    
+    subgraph UIDir["ui/"]
+        Chat[chat_interface.py]
+    end
+    
+    Core --> Agents
+    Config --> Agents
+    Agents --> UIDir
 ```
 
 ## Extensibility
@@ -110,4 +208,12 @@ class MyAgent(CRISADKAgent):
     async def my_tool(self, query: str) -> CRISToolResult:
         # Implementation
         return CRISToolResult(success=True, data={...})
+```
+
+## Dependencies
+
+```toml
+"google-adk>=1.0.0"
+"google-genai>=1.0.0"
+"a2a-sdk>=0.2.0"
 ```
