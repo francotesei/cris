@@ -31,12 +31,16 @@ class Settings(BaseSettings):
     a2a_enable_streaming: bool = True
     
     # Legacy LLM Configuration (for fallback/comparison)
-    llm_provider: str = "gemini"  # gemini, openai, anthropic
+    llm_provider: str = "gemini"  # gemini, openai, anthropic, ollama
     openai_api_key: Optional[str] = None
     anthropic_api_key: Optional[str] = None
     llm_model: str = "gemini-2.0-flash"  # Updated to Gemini 3
     llm_temperature: float = 0.7
     llm_max_tokens: int = 8192
+    
+    # Ollama Configuration (Local LLM - no API costs)
+    ollama_base_url: str = "http://localhost:11434/v1"
+    ollama_model: str = "llama3.2"  # Options: llama3.2, mistral, qwen2.5, gemma2, etc.
 
     # Neo4j Configuration
     neo4j_uri: str = "bolt://localhost:7687"
