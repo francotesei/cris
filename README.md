@@ -107,7 +107,7 @@ flowchart TB
 
 | Component | Technology |
 |-----------|------------|
-| **AI Engine** | Gemini 3 (`gemini-2.0-flash`) |
+| **AI Engine** | Gemini 3 Pro (`gemini-3-pro`) or Ollama (local) |
 | **Agent Framework** | Google ADK |
 | **Agent Communication** | A2A Protocol |
 | **Knowledge Graph** | Neo4j |
@@ -115,6 +115,8 @@ flowchart TB
 | **Frontend** | Streamlit |
 
 ## Quick Start
+
+### Option A: Gemini 3 (Default - Cloud)
 
 ```bash
 # Clone and install
@@ -124,7 +126,30 @@ uv sync
 
 # Configure
 cp .env.example .env
-# Add GOOGLE_API_KEY to .env
+# Edit .env: set GOOGLE_API_KEY
+
+# Start Neo4j
+docker-compose up -d
+
+# Run
+uv run streamlit run app.py
+```
+
+### Option B: Ollama (Local - Free)
+
+```bash
+# Install Ollama: https://ollama.ai
+ollama pull llama3.2
+ollama serve
+
+# Clone and install
+git clone https://github.com/cris-project/cris.git
+cd cris
+uv sync
+
+# Configure for Ollama
+cp .env.example .env
+# Edit .env: set CRIS_ENV=ollama
 
 # Start Neo4j
 docker-compose up -d

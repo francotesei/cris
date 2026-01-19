@@ -6,9 +6,10 @@
 
 ## Overview
 
-CRIS uses Google's latest AI infrastructure:
+CRIS uses Google's latest AI infrastructure (or local alternatives):
 
-- **Gemini 3** (`gemini-2.0-flash`): Advanced reasoning model
+- **Gemini 3 Pro** (`gemini-3-pro`): Advanced reasoning model from Google
+- **Ollama** (optional): Run locally with `llama3.2`, `qwen2.5`, `mistral`
 - **ADK** (Agent Development Kit): Framework for autonomous agents
 - **A2A** (Agent-to-Agent Protocol): Inter-agent communication
 
@@ -92,7 +93,7 @@ Base class for all agents:
 class CRISADKAgent:
     name: str
     description: str
-    model: str = "gemini-2.0-flash"
+    model: str = "gemini-3-pro"
     
     def get_tools(self) -> List[Callable]
     async def run(self, query: str, ...) -> Dict[str, Any]
@@ -155,7 +156,7 @@ stateDiagram-v2
 GOOGLE_API_KEY=your_key_here
 
 # Gemini 3
-GEMINI_MODEL=gemini-2.0-flash
+GEMINI_MODEL=gemini-3-pro
 
 # A2A
 A2A_ENABLE=true

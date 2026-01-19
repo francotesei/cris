@@ -31,7 +31,7 @@ cp .env.example .env
 New agents should:
 
 1. Extend `CRISADKAgent`
-2. Use Gemini 3 (`gemini-2.0-flash`)
+2. Use Gemini 3 (`gemini-3-pro`) or Ollama for local development
 3. Implement `get_tools()` with specialized tools
 4. Register with A2A protocol
 5. Include docstrings for all tools

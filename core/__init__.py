@@ -1,14 +1,15 @@
-"""CRIS Core Module - Powered by Gemini 3 + ADK + A2A.
+"""CRIS Core Module - Multi-Provider AI Agents.
 
 This module contains the core abstractions and base classes that enable
-CRIS's extensible architecture. Includes both legacy base classes and
-new ADK/A2A infrastructure.
+CRIS's extensible architecture. Supports multiple LLM providers:
+- Gemini (cloud)
+- Ollama (local, free)
+- OpenAI (cloud)
+- Anthropic (cloud)
 
-New Architecture (Gemini 3 + ADK + A2A):
-- CRISADKAgent: Base class for ADK-powered agents
-- CRISOrchestratorAgent: Orchestrator with A2A delegation
-- A2AHandler/A2AClient: A2A protocol implementation
-- AgentCard: A2A capability advertisement
+Agent Base Classes:
+- MultiProviderAgent: Works with any LLM provider (recommended)
+- CRISADKAgent: Google ADK-powered agents (requires Gemini)
 
 Legacy Architecture (still supported):
 - BaseAgent: Original agent abstraction
@@ -24,12 +25,19 @@ from core.base_graph_db import BaseGraphDB
 from core.registry import ComponentRegistry
 from core.plugin_loader import PluginLoader
 
-# New ADK + A2A infrastructure
+# Multi-provider agent infrastructure (works with Ollama, Gemini, OpenAI, etc.)
+from core.multi_provider_agent import (
+    MultiProviderAgent,
+    MultiProviderOrchestrator,
+    AgentRole,
+    AgentCard,
+    ToolResult,
+)
+
+# ADK + A2A infrastructure (requires Gemini)
 from core.adk_agent import (
     CRISADKAgent,
     CRISOrchestratorAgent,
-    AgentRole,
-    AgentCard,
     CRISToolResult,
     create_tool,
 )
@@ -59,11 +67,15 @@ __all__ = [
     "BaseGraphDB",
     "ComponentRegistry",
     "PluginLoader",
-    # New ADK infrastructure
-    "CRISADKAgent",
-    "CRISOrchestratorAgent",
+    # Multi-provider agents (recommended)
+    "MultiProviderAgent",
+    "MultiProviderOrchestrator",
     "AgentRole",
     "AgentCard",
+    "ToolResult",
+    # ADK infrastructure (Gemini only)
+    "CRISADKAgent",
+    "CRISOrchestratorAgent",
     "CRISToolResult",
     "create_tool",
     # A2A Protocol

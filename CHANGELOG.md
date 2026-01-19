@@ -9,7 +9,8 @@ Complete architecture overhaul for the Google DeepMind Gemini 3 Hackathon.
 ### Added
 - **Google ADK Integration**: All agents now use `CRISADKAgent` base class
 - **A2A Protocol**: Inter-agent communication via Agent-to-Agent protocol
-- **Gemini 3 Support**: Using `gemini-2.0-flash` as reasoning engine
+- **Gemini 3 Support**: Using `gemini-3-pro` as reasoning engine
+- **Ollama Support**: Run locally with `llama3.2`, `qwen2.5`, `mistral` - no API costs!
 - **Agent Cards**: A2A capability advertisement for agent discovery
 - **New Tools**: 40+ specialized tools across all agents
 - **Streaming Support**: Real-time response streaming via A2A

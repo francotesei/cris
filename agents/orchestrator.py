@@ -79,7 +79,7 @@ class OrchestratorAgent(CRISOrchestratorAgent):
     
     name = "orchestrator"
     description = "Central coordinator that routes queries to specialized agents and synthesizes results."
-    model = "gemini-2.0-flash"  # Gemini 3
+    model = "gemini-3-pro"  # Gemini 3 Pro
     role = AgentRole.ORCHESTRATOR
     
     def __init__(self, **kwargs: Any) -> None:

@@ -61,7 +61,7 @@ class OSINTAgent(CRISADKAgent):
     
     name = "osint_agent"
     description = "Analyzes digital footprints and open-source intelligence for investigations."
-    model = "gemini-2.0-flash"
+    model = "gemini-3-pro"
     role = AgentRole.SPECIALIST
     
     def __init__(self, **kwargs: Any) -> None:

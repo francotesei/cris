@@ -87,7 +87,7 @@ Expected output:
 ```
 🧪 Testing CRIS Agents...
   ✓ Orchestrator initialized
-    Model: gemini-2.0-flash
+    Model: gemini-3-pro (or ollama/llama3.2)
   ✓ Health check passed
   📡 A2A Registry: 6 agents registered
 ✅ Agent test complete!

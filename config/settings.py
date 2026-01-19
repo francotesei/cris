@@ -3,7 +3,11 @@
 This module uses Pydantic Settings to manage application configuration
 via environment variables and .env files.
 
-Optimized for Gemini 3 + ADK + A2A architecture.
+Built for the Google Gemini 3 Hackathon 🚀
+
+Configuration:
+  - CRIS_ENV: Select environment (gemini, ollama, openai, anthropic)
+  - config/models.yml: Defines what each environment contains
 """
 
 from typing import List, Optional
@@ -13,34 +17,40 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     """CRIS Application Settings."""
 
-    # Gemini 3 / ADK Configuration
-    google_api_key: Optional[str] = None
-    gemini_model: str = "gemini-2.0-flash"  # Gemini 3 (API name: gemini-2.0-flash)
-    gemini_temperature: float = 0.7
-    gemini_max_tokens: int = 8192
+    # ==========================================================================
+    # ENVIRONMENT SELECTION (main config switch)
+    # ==========================================================================
+    # Set this to switch between environments defined in config/models.yml
+    # Options: gemini (default), ollama, openai, anthropic
+    cris_env: str = "gemini"
     
-    # ADK Configuration
+    # ==========================================================================
+    # API Keys (required based on CRIS_ENV)
+    # ==========================================================================
+    google_api_key: Optional[str] = None      # Required for: gemini
+    openai_api_key: Optional[str] = None      # Required for: openai
+    anthropic_api_key: Optional[str] = None   # Required for: anthropic
+    # ollama: no API key required
+    
+    # ==========================================================================
+    # Ollama Configuration (only used when CRIS_ENV=ollama)
+    # ==========================================================================
+    ollama_base_url: str = "http://localhost:11434/v1"
+    
+    # ==========================================================================
+    # ADK Configuration (Google Agent Development Kit)
+    # ==========================================================================
     adk_enable_tracing: bool = True
     adk_session_timeout: int = 3600
     adk_max_tool_calls: int = 10
     
+    # ==========================================================================
     # A2A Protocol Configuration
+    # ==========================================================================
     a2a_enable: bool = True
     a2a_server_port: int = 8080
     a2a_protocol_version: str = "0.2"
     a2a_enable_streaming: bool = True
-    
-    # Legacy LLM Configuration (for fallback/comparison)
-    llm_provider: str = "gemini"  # gemini, openai, anthropic, ollama
-    openai_api_key: Optional[str] = None
-    anthropic_api_key: Optional[str] = None
-    llm_model: str = "gemini-2.0-flash"  # Updated to Gemini 3
-    llm_temperature: float = 0.7
-    llm_max_tokens: int = 8192
-    
-    # Ollama Configuration (Local LLM - no API costs)
-    ollama_base_url: str = "http://localhost:11434/v1"
-    ollama_model: str = "llama3.2"  # Options: llama3.2, mistral, qwen2.5, gemma2, etc.
 
     # Neo4j Configuration
     neo4j_uri: str = "bolt://localhost:7687"

@@ -18,7 +18,7 @@
 | Feature | Technology |
 |---------|------------|
 | Multi-Agent Orchestration | Google ADK + A2A Protocol |
-| AI Reasoning | Gemini 3 (`gemini-2.0-flash`) |
+| AI Reasoning | Gemini 3 Pro or Ollama (local) |
 | Knowledge Graph | Neo4j |
 | Semantic Search | ChromaDB |
 | Interactive UI | Streamlit |

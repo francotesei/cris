@@ -62,7 +62,7 @@ class PredictorAgent(CRISADKAgent):
     
     name = "predictor_agent"
     description = "Generates forecasts and risk simulations for criminal behavior patterns."
-    model = "gemini-2.0-flash"
+    model = "gemini-3-pro"
     role = AgentRole.SPECIALIST
     
     def __init__(self, **kwargs: Any) -> None:

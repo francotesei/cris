@@ -55,7 +55,7 @@ class LinkAgent(CRISADKAgent):
     
     name = "link_agent"
     description = "Analyzes entity relationships and finds cross-case connections using graph intelligence."
-    model = "gemini-2.0-flash"
+    model = "gemini-3-pro"
     role = AgentRole.ANALYST
     
     def __init__(

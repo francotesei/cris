@@ -113,7 +113,7 @@ class ProfilerAgent(CRISADKAgent):
     
     name = "profiler_agent"
     description = "Generates suspect behavioral profiles from crime characteristics using advanced psychological analysis."
-    model = "gemini-2.0-flash"
+    model = "gemini-3-pro"
     role = AgentRole.SPECIALIST
     
     def __init__(self, **kwargs: Any) -> None:

@@ -1,0 +1,83 @@
+# =============================================================================
+# CRIS - Model Configuration
+# =============================================================================
+# Built for the Google Gemini 3 Hackathon 🚀
+#
+# HOW TO USE:
+#   Set CRIS_ENV in your .env file:
+#     - CRIS_ENV=gemini  → Google Gemini 3 Pro (default, cloud)
+#     - CRIS_ENV=ollama  → Local LLM via Ollama (free, no API)
+# =============================================================================
+
+# =============================================================================
+# ENVIRONMENTS
+# =============================================================================
+
+environments:
+  # ---------------------------------------------------------------------------
+  # GEMINI 3 - Default for Hackathon (Cloud)
+  # ---------------------------------------------------------------------------
+  gemini:
+    provider: gemini
+    model: gemini-3-pro
+    temperature: 0.7
+    max_tokens: 8192
+    description: "Google Gemini 3 Pro - Default for hackathon"
+    requires:
+      - GOOGLE_API_KEY
+
+  # ---------------------------------------------------------------------------
+  # OLLAMA - Local Development (Free, no API costs)
+  # ---------------------------------------------------------------------------
+  ollama:
+    provider: ollama
+    model: llama3.2
+    temperature: 0.7
+    max_tokens: 4096
+    base_url: "http://localhost:11434/v1"
+    description: "Local LLM via Ollama - Free, no API costs"
+    requires: []
+
+# =============================================================================
+# AVAILABLE MODELS
+# =============================================================================
+
+models:
+  gemini:
+    - name: gemini-3-pro
+      description: "Gemini 3 Pro - Best reasoning"
+      max_tokens: 8192
+    - name: gemini-3-flash
+      description: "Gemini 3 Flash - Fast and efficient"
+      max_tokens: 8192
+
+  ollama:
+    - name: llama3.2
+      description: "Meta Llama 3.2 - General purpose"
+      max_tokens: 4096
+    - name: mistral
+      description: "Mistral - Fast and efficient"
+      max_tokens: 4096
+    - name: qwen2.5
+      description: "Qwen 2.5 - Good for analysis"
+      max_tokens: 8192
+
+# =============================================================================
+# AGENT TEMPERATURE OVERRIDES
+# =============================================================================
+
+agents:
+  orchestrator:
+    temperature: 0.7
+  link_agent:
+    temperature: 0.5
+  profiler_agent:
+    temperature: 0.8
+  geo_intel_agent:
+    temperature: 0.5
+  witness_agent:
+    temperature: 0.6
+  predictor_agent:
+    temperature: 0.7
+  osint_agent:
+    temperature: 0.6

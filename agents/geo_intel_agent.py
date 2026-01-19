@@ -60,7 +60,7 @@ class GeoIntelAgent(CRISADKAgent):
     
     name = "geo_intel_agent"
     description = "Analyzes crime locations for spatial patterns, hotspots, and geographic profiling."
-    model = "gemini-2.0-flash"
+    model = "gemini-3-pro"
     role = AgentRole.SPECIALIST
     
     def __init__(self, **kwargs: Any) -> None:

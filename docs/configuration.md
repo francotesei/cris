@@ -1,27 +1,66 @@
 # Configuration
 
-CRIS is configured via environment variables in `.env`.
+CRIS uses a simple environment-based configuration:
 
-## Gemini 3 / ADK
+1. **`.env`** → Set `CRIS_ENV` to select the environment
+2. **`config/models.yml`** → Defines what each environment contains
+
+## Quick Start
+
+### Using Gemini 3 (Default - Cloud)
+
+```env
+# .env
+CRIS_ENV=gemini
+GOOGLE_API_KEY=your_api_key_here
+```
+
+### Using Ollama (Local - Free)
+
+```env
+# .env
+CRIS_ENV=ollama
+```
+
+```bash
+# Install Ollama: https://ollama.ai
+ollama pull llama3.2
+ollama serve
+```
+
+## Environment Variables
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `GOOGLE_API_KEY` | Gemini API key | Required |
-| `GEMINI_MODEL` | Model to use | `gemini-2.0-flash` |
-| `GEMINI_TEMPERATURE` | Generation temperature | `0.7` |
-| `GEMINI_MAX_TOKENS` | Max tokens per response | `8192` |
+| `CRIS_ENV` | Environment: `gemini` or `ollama` | `gemini` |
+| `GOOGLE_API_KEY` | Required when `CRIS_ENV=gemini` | - |
+| `OLLAMA_BASE_URL` | Ollama server URL | `http://localhost:11434/v1` |
 
-## A2A Protocol
+## Environments
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `A2A_ENABLE` | Enable A2A communication | `true` |
-| `A2A_SERVER_PORT` | A2A server port | `8080` |
-| `A2A_ENABLE_STREAMING` | Enable streaming responses | `true` |
+### `gemini` - Google Gemini 3 (Cloud)
+
+- **Provider:** Google Gemini
+- **Model:** `gemini-3-pro`
+- **Requires:** `GOOGLE_API_KEY`
+
+### `ollama` - Local LLM (Free)
+
+- **Provider:** Ollama
+- **Model:** `llama3.2`
+- **Requires:** Ollama running locally
+
+**Recommended Ollama models:**
+```bash
+ollama pull llama3.2   # General purpose
+ollama pull mistral    # Fast
+ollama pull qwen2.5    # Good for analysis
+```
 
 ## Database
 
 ### Neo4j
+
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `NEO4J_URI` | Connection URI | `bolt://localhost:7687` |
@@ -29,6 +68,7 @@ CRIS is configured via environment variables in `.env`.
 | `NEO4J_PASSWORD` | Password | `crispassword` |
 
 ### ChromaDB
+
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `CHROMA_PERSIST_DIR` | Vector store path | `./data/chroma` |
@@ -41,23 +81,54 @@ CRIS is configured via environment variables in `.env`.
 | `DEBUG` | Enable debug mode | `true` |
 | `ENABLE_PREDICTIONS` | Enable predictor agent | `true` |
 | `ENABLE_OSINT` | Enable OSINT agent | `false` |
-| `LOG_LEVEL` | Log level | `INFO` |
 
-## Example `.env`
+## Model Configuration (`config/models.yml`)
+
+The `models.yml` file defines environments and agent-specific settings:
+
+```yaml
+environments:
+  gemini:
+    provider: gemini
+    model: gemini-3-pro
+    temperature: 0.7
+    max_tokens: 8192
+
+  ollama:
+    provider: ollama
+    model: llama3.2
+    temperature: 0.7
+    max_tokens: 4096
+
+# Agent temperature overrides
+agents:
+  profiler_agent:
+    temperature: 0.8  # Higher for behavioral insights
+  link_agent:
+    temperature: 0.5  # Lower for precise analysis
+```
+
+## Example `.env` Files
+
+### Gemini 3 (Hackathon Default)
 
 ```env
-# Required
+CRIS_ENV=gemini
 GOOGLE_API_KEY=your_key_here
 
-# Gemini 3
-GEMINI_MODEL=gemini-2.0-flash
-GEMINI_TEMPERATURE=0.7
-
-# Database
 NEO4J_URI=bolt://localhost:7687
 NEO4J_PASSWORD=crispassword
 
-# Features
 DEBUG=true
-ENABLE_PREDICTIONS=true
+```
+
+### Ollama (Local Development)
+
+```env
+CRIS_ENV=ollama
+
+NEO4J_URI=bolt://localhost:7687
+NEO4J_PASSWORD=crispassword
+
+DEBUG=true
 ```

@@ -93,7 +93,7 @@ class CRISADKAgent:
     
     name: str = "base_agent"
     description: str = "Base CRIS ADK Agent"
-    model: str = "gemini-2.0-flash"  # Default to Gemini 3 (gemini-2.0-flash is the API name)
+    model: str = "gemini-3-pro"  # Default to Gemini 3 Pro
     role: AgentRole = AgentRole.SPECIALIST
     
     def __init__(

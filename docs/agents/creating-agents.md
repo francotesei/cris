@@ -13,7 +13,7 @@ from core.registry import ComponentRegistry
 class FinancialAgent(CRISADKAgent):
     name = "financial_agent"
     description = "Analyzes financial transactions for money laundering patterns."
-    model = "gemini-2.0-flash"
+    model = "gemini-3-pro"  # Works with Ollama too when LLM_PROVIDER=ollama
     role = AgentRole.SPECIALIST
     
     def __init__(self, **kwargs):
@@ -80,7 +80,7 @@ class FinancialAgent(CRISADKAgent):
 class MyAgent(CRISADKAgent):
     name = "my_agent"
     description = "What this agent does"
-    model = "gemini-2.0-flash"  # Gemini 3
+    model = "gemini-3-pro"  # Or Ollama model when using local LLM
     role = AgentRole.SPECIALIST
 ```
 

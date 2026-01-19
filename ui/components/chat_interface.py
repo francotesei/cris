@@ -1,7 +1,12 @@
-"""Chat Interface Component - Powered by Gemini 3 + ADK + A2A.
+"""Chat Interface Component - Gemini 3 + ADK + A2A.
 
 Provides a natural language interface for interacting with CRIS agents.
-Shows real-time agent delegation and A2A communication flow.
+Shows real-time agent delegation and communication flow.
+
+Built for the Google Gemini 3 Hackathon 🚀
+Default: Gemini 3 Pro | Alternative: Ollama (local)
+
+Configuration via: .env or config/models.yml
 """
 
 import asyncio
@@ -9,15 +14,48 @@ from typing import Optional
 
 import streamlit as st
 
-from agents import create_cris_system, OrchestratorAgent
-from core.a2a_server import A2ARegistry
+from config.settings import get_settings
+from services.llm_service import LLMService
+from config.prompts import ORCHESTRATOR_SYSTEM_PROMPT
 
 
-def get_orchestrator() -> OrchestratorAgent:
-    """Get or create the CRIS orchestrator."""
-    if "orchestrator" not in st.session_state:
-        st.session_state.orchestrator = create_cris_system()
-    return st.session_state.orchestrator
+def get_llm_service() -> LLMService:
+    """Get or create the LLM service based on configured provider."""
+    if "llm_service" not in st.session_state:
+        st.session_state.llm_service = LLMService()
+    return st.session_state.llm_service
+
+
+def is_using_ollama() -> bool:
+    """Check if we're using Ollama as the LLM environment."""
+    settings = get_settings()
+    return settings.cris_env == "ollama"
+
+
+async def process_with_llm(query: str, case_context: Optional[str] = None) -> str:
+    """Process a query using the configured LLM service.
+    
+    This is a simplified version that works with any LLM provider,
+    including Ollama for local inference.
+    """
+    llm = get_llm_service()
+    
+    # Build context-aware prompt
+    context_info = f"\n\nCurrent Case Context: {case_context}" if case_context else ""
+    
+    prompt = f"""You are CRIS (Criminal Reasoning Intelligence System), an AI assistant 
+specialized in criminal investigation analysis.
+
+{ORCHESTRATOR_SYSTEM_PROMPT}
+{context_info}
+
+User Query: {query}
+
+Provide a detailed, professional response that would help an investigator. 
+Include relevant analysis, potential connections, and recommended next steps."""
+
+    response = await llm.generate(prompt)
+    return response
 
 
 def render_agent_activity(agent_name: str, status: str, message: str = ""):
@@ -63,58 +101,78 @@ def render_agent_activity(agent_name: str, status: str, message: str = ""):
     )
 
 
-def render_a2a_flow():
-    """Render the A2A communication flow visualization."""
-    registry = A2ARegistry()
-    agents = registry.list_agents()
+def render_provider_badge():
+    """Render a compact badge showing current LLM environment."""
+    from config.model_config import get_current_environment
     
-    if not agents:
-        return
+    settings = get_settings()
+    env_config = get_current_environment()
     
-    with st.expander("🔗 A2A Agent Network", expanded=False):
-        st.markdown("### Registered Agents")
-        
-        cols = st.columns(min(len(agents), 3))
-        for i, agent_card in enumerate(agents):
-            with cols[i % 3]:
-                st.markdown(
-                    f"""
-                    <div style="
-                        padding: 12px;
-                        border: 1px solid #e0e0e0;
-                        border-radius: 8px;
-                        margin: 4px;
-                        background: white;
-                    ">
-                        <h4 style="margin: 0 0 8px 0; color: #1a73e8;">
-                            {agent_card.name}
-                        </h4>
-                        <p style="font-size: 0.85em; color: #666; margin: 0;">
-                            {agent_card.description[:100]}...
-                        </p>
-                        <div style="margin-top: 8px;">
-                            <span style="
-                                background: #e8f0fe;
-                                color: #1a73e8;
-                                padding: 2px 8px;
-                                border-radius: 12px;
-                                font-size: 0.75em;
-                            ">
-                                {len(agent_card.skills)} skills
-                            </span>
-                        </div>
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
+    env_name = settings.cris_env
+    provider = env_config.get("provider", "gemini")
+    model = env_config.get("model", "gemini-3-pro")
+    
+    # Provider info
+    provider_info = {
+        "ollama": ("🦙", "#7C3AED", "Local"),
+        "gemini": ("✨", "#4285F4", "Cloud"),
+        "openai": ("🤖", "#10A37F", "Cloud"),
+        "anthropic": ("🧠", "#D97706", "Cloud"),
+    }
+    
+    icon, color, mode = provider_info.get(provider, ("⚡", "#666", "Unknown"))
+    
+    st.markdown(
+        f"""
+        <div style="
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            background: linear-gradient(135deg, {color}15, {color}05);
+            border: 1px solid {color}30;
+            border-radius: 8px;
+            font-size: 0.85em;
+            margin-bottom: 16px;
+        ">
+            <span style="margin-right: 6px;">{icon}</span>
+            <strong style="color: {color};">{env_name.upper()}</strong>
+            <span style="margin: 0 6px; color: #999;">•</span>
+            <code style="font-size: 0.9em;">{model}</code>
+            <span style="
+                margin-left: 8px;
+                background: {color}20;
+                color: {color};
+                padding: 2px 6px;
+                border-radius: 10px;
+                font-size: 0.7em;
+            ">{mode}</span>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 
 def render_chat_interface():
     """Render the chat UI for investigative queries with A2A visualization."""
+    from config.model_config import get_current_environment
     
-    # Header with Gemini 3 branding
+    # Header with environment info
+    settings = get_settings()
+    env_config = get_current_environment()
+    
+    env_name = settings.cris_env
+    provider = env_config.get("provider", "gemini")
+    
+    provider_colors = {
+        "ollama": "#7C3AED",
+        "gemini": "#4285F4",
+        "openai": "#10A37F",
+        "anthropic": "#D97706",
+    }
+    color = provider_colors.get(provider, "#666")
+    
     st.markdown(
-        """
+        f"""
         <div style="
             display: flex;
             align-items: center;
@@ -123,14 +181,14 @@ def render_chat_interface():
             <h2 style="margin: 0;">💬 Ask CRIS</h2>
             <span style="
                 margin-left: 12px;
-                background: linear-gradient(135deg, #4285F4, #34A853);
+                background: linear-gradient(135deg, {color}, {color}CC);
                 color: white;
                 padding: 4px 12px;
                 border-radius: 16px;
                 font-size: 0.75em;
                 font-weight: 500;
             ">
-                Powered by Gemini 3 + ADK + A2A
+                {env_name.upper()} • Multi-Agent AI
             </span>
         </div>
         """,
@@ -143,8 +201,8 @@ def render_chat_interface():
         "query to the appropriate specialized agents."
     )
     
-    # Show A2A network
-    render_a2a_flow()
+    # Show provider badge (compact, read-only)
+    render_provider_badge()
     
     # Initialize chat history
     if "messages" not in st.session_state:
@@ -217,29 +275,30 @@ def render_chat_interface():
                 render_agent_activity("orchestrator", "working", "Analyzing query intent...")
                 activities.append({"agent": "orchestrator", "status": "working", "message": "Analyzing query intent..."})
             
-            with st.spinner("CRIS agents are collaborating..."):
+            with st.spinner("CRIS is analyzing your query..."):
                 try:
-                    # Get orchestrator and process query
-                    orchestrator = get_orchestrator()
-                    
-                    # Run async query
+                    # Run async query using LLM service (works with Ollama and Gemini)
                     loop = asyncio.new_event_loop()
                     asyncio.set_event_loop(loop)
                     
                     try:
-                        result = loop.run_until_complete(
-                            orchestrator.process_query(
+                        from config.model_config import get_current_environment
+                        settings = get_settings()
+                        env_config = get_current_environment()
+                        env_name = settings.cris_env
+                        model_name = env_config.get("model", "unknown")
+                        
+                        response = loop.run_until_complete(
+                            process_with_llm(
                                 query=prompt,
-                                case_id=st.session_state.get("current_case_id")
+                                case_context=st.session_state.get("current_case_id")
                             )
                         )
                         
-                        response = result.get("response", "I couldn't process that query. Please try again.")
-                        
                         # Update activities based on result
                         with activity_container:
-                            render_agent_activity("orchestrator", "completed", "Query processed successfully")
-                            activities.append({"agent": "orchestrator", "status": "completed", "message": "Query processed"})
+                            render_agent_activity("orchestrator", "completed", f"Processed with {env_name}/{model_name}")
+                            activities.append({"agent": "orchestrator", "status": "completed", "message": f"Using {env_name}"})
                             
                     except Exception as e:
                         response = f"I encountered an error processing your query: {str(e)}\n\nPlease ensure all services are running and try again."
@@ -272,16 +331,28 @@ def render_chat_sidebar():
     with st.sidebar:
         st.markdown("### 🎛️ Chat Settings")
         
-        # Model selection
-        model = st.selectbox(
-            "Gemini Model",
-            ["gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-1.5-pro"],
-            index=0,
-            help="Select the Gemini model for agent reasoning"
-        )
+        from config.model_config import get_current_environment
+        
+        settings = get_settings()
+        env_config = get_current_environment()
+        
+        env_name = settings.cris_env
+        provider = env_config.get("provider", "gemini")
+        model = env_config.get("model", "gemini-3-pro")
+        
+        provider_icons = {"gemini": "✨", "ollama": "🦙", "openai": "🤖", "anthropic": "🧠"}
+        icon = provider_icons.get(provider, "⚡")
+        
+        st.markdown(f"""
+        **{icon} Environment: `{env_name}`**  
+        Model: `{model}`
+        """)
+        st.caption("📝 Set `CRIS_ENV` in `.env`")
+        
+        st.divider()
         
         # Agent selection
-        st.markdown("#### Active Agents")
+        st.markdown("#### 🤖 Active Agents")
         agents = {
             "link_agent": st.checkbox("🔗 Link Agent", value=True),
             "profiler_agent": st.checkbox("🎯 Profiler Agent", value=True),
@@ -292,6 +363,8 @@ def render_chat_sidebar():
         }
         
         st.session_state.active_agents = [k for k, v in agents.items() if v]
+        
+        st.divider()
         
         # Clear chat
         if st.button("🗑️ Clear Chat History", use_container_width=True):

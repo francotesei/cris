@@ -10,7 +10,7 @@ All agents extend `CRISADKAgent` and use Gemini 3 for reasoning:
 class CRISADKAgent:
     name: str                    # Unique identifier
     description: str             # What the agent does
-    model: str = "gemini-2.0-flash"  # Gemini 3
+    model: str = "gemini-3-pro"  # or use settings.ollama_model for local
     
     def get_tools(self) -> List[Callable]:
         """Return agent-specific tools."""

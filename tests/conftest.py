@@ -25,7 +25,7 @@ def event_loop() -> Generator[asyncio.AbstractEventLoop, None, None]:
 def test_settings() -> Settings:
     """Create test settings with mock values."""
     return Settings(
-        llm_provider="gemini",
+        cris_env="gemini",
         google_api_key="test_key",
         neo4j_uri="bolt://localhost:7687",
         neo4j_user="neo4j",

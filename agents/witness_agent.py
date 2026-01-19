@@ -60,7 +60,7 @@ class WitnessAgent(CRISADKAgent):
     
     name = "witness_agent"
     description = "Analyzes witness statements for credibility, consistency, and deception indicators."
-    model = "gemini-2.0-flash"
+    model = "gemini-3-pro"
     role = AgentRole.SPECIALIST
     
     def __init__(self, **kwargs: Any) -> None:
