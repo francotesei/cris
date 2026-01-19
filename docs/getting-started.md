@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="../assets/cris_logo_compact.svg" alt="CRIS" width="250">
+</p>
+
 # Getting Started
 
 ## Prerequisites
@@ -5,7 +9,7 @@
 - Python 3.11+
 - Docker (for Neo4j)
 - [uv](https://github.com/astral-sh/uv) package manager
-- Google API Key (for Gemini 3)
+- Google API Key (for Gemini 3) **OR** Ollama for local LLM
 
 ## Installation
 
@@ -21,10 +25,23 @@ uv sync
 cp .env.example .env
 ```
 
-Edit `.env` and add your API key:
+Edit `.env` and configure your LLM provider:
 
+**Option A: Google Gemini (Cloud)**
 ```env
+LLM_PROVIDER=gemini
 GOOGLE_API_KEY=your_gemini_api_key_here
+```
+
+**Option B: Ollama (Local - Free)**
+```bash
+# Install Ollama first: https://ollama.ai
+ollama pull llama3.2
+ollama serve
+```
+```env
+LLM_PROVIDER=ollama
+OLLAMA_MODEL=llama3.2
 ```
 
 ## Start Infrastructure

@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="../assets/cris_logo_compact.svg" alt="CRIS Logo" width="300">
+</p>
+
 # CRIS Documentation
 
 **Criminal Reasoning Intelligence System** - Multi-agent AI platform powered by Gemini 3 + ADK + A2A.

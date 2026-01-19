@@ -1,12 +1,27 @@
-# CRIS - Criminal Reasoning Intelligence System
+<p align="center">
+  <img src="assets/cris_logo_full.svg" alt="CRIS Logo" width="400">
+</p>
 
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Gemini 3](https://img.shields.io/badge/Powered%20by-Gemini%203-4285F4.svg)](https://deepmind.google/technologies/gemini/)
+<p align="center">
+  <strong>Criminal Reasoning Intelligence System</strong>
+</p>
 
-> Multi-agent AI platform for criminal intelligence powered by **Gemini 3 + ADK + A2A**
+<p align="center">
+  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.11+-blue.svg" alt="Python 3.11+"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+  <a href="https://deepmind.google/technologies/gemini/"><img src="https://img.shields.io/badge/Powered%20by-Gemini%203-4285F4.svg" alt="Gemini 3"></a>
+  <a href="https://ollama.ai"><img src="https://img.shields.io/badge/Local%20LLM-Ollama-black.svg" alt="Ollama"></a>
+</p>
 
-**Built for the Google DeepMind Gemini 3 Hackathon** 🚀
+<p align="center">
+  Multi-agent AI platform for criminal intelligence powered by <strong>Gemini 3 + ADK + A2A</strong>
+</p>
+
+<p align="center">
+  <em>Built for the Google DeepMind Gemini 3 Hackathon</em> 🚀
+</p>
+
+---
 
 ## Overview
 

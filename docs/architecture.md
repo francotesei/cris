@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="../assets/cris_icon.svg" alt="CRIS" width="100">
+</p>
+
 # CRIS Architecture
 
 ## Overview

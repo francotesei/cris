@@ -1,0 +1,156 @@
+<svg width="800" height="300" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients for depth -->
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a2332;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d4263;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c94242;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b2f2f;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="300" fill="#0a0e14"/>
+  
+  <!-- Icon: Network/Neural pattern representing multi-agent intelligence -->
+  <g transform="translate(80, 150)" filter="url(#shadow)">
+    <!-- Central node (larger) -->
+    <circle cx="0" cy="0" r="16" fill="url(#accentGrad)" filter="url(#glow)"/>
+    <circle cx="0" cy="0" r="12" fill="#c94242" opacity="0.8"/>
+    <circle cx="0" cy="0" r="6" fill="#ff6b6b" opacity="0.9"/>
+    
+    <!-- Surrounding nodes in hexagonal pattern -->
+    <g id="nodes">
+      <!-- Top -->
+      <circle cx="0" cy="-55" r="10" fill="url(#primaryGrad)"/>
+      <circle cx="0" cy="-55" r="6" fill="#2d4263" opacity="0.9"/>
+      
+      <!-- Top Right -->
+      <circle cx="48" cy="-28" r="10" fill="url(#primaryGrad)"/>
+      <circle cx="48" cy="-28" r="6" fill="#2d4263" opacity="0.9"/>
+      
+      <!-- Bottom Right -->
+      <circle cx="48" cy="28" r="10" fill="url(#primaryGrad)"/>
+      <circle cx="48" cy="28" r="6" fill="#2d4263" opacity="0.9"/>
+      
+      <!-- Bottom -->
+      <circle cx="0" cy="55" r="10" fill="url(#primaryGrad)"/>
+      <circle cx="0" cy="55" r="6" fill="#2d4263" opacity="0.9"/>
+      
+      <!-- Bottom Left -->
+      <circle cx="-48" cy="28" r="10" fill="url(#primaryGrad)"/>
+      <circle cx="-48" cy="28" r="6" fill="#2d4263" opacity="0.9"/>
+      
+      <!-- Top Left -->
+      <circle cx="-48" cy="-28" r="10" fill="url(#primaryGrad)"/>
+      <circle cx="-48" cy="-28" r="6" fill="#2d4263" opacity="0.9"/>
+    </g>
+    
+    <!-- Connection lines (representing network analysis) -->
+    <g stroke="#4a6491" stroke-width="2" opacity="0.6">
+      <line x1="0" y1="0" x2="0" y2="-55"/>
+      <line x1="0" y1="0" x2="48" y2="-28"/>
+      <line x1="0" y1="0" x2="48" y2="28"/>
+      <line x1="0" y1="0" x2="0" y2="55"/>
+      <line x1="0" y1="0" x2="-48" y2="28"/>
+      <line x1="0" y1="0" x2="-48" y2="-28"/>
+      
+      <!-- Outer connections -->
+      <line x1="0" y1="-55" x2="48" y2="-28" opacity="0.3"/>
+      <line x1="48" y1="-28" x2="48" y2="28" opacity="0.3"/>
+      <line x1="48" y1="28" x2="0" y2="55" opacity="0.3"/>
+      <line x1="0" y1="55" x2="-48" y2="28" opacity="0.3"/>
+      <line x1="-48" y1="28" x2="-48" y2="-28" opacity="0.3"/>
+      <line x1="-48" y1="-28" x2="0" y2="-55" opacity="0.3"/>
+    </g>
+    
+    <!-- Data pulse animation circles -->
+    <circle cx="0" cy="0" r="20" fill="none" stroke="#c94242" stroke-width="1" opacity="0.3">
+      <animate attributeName="r" from="20" to="40" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" from="0.3" to="0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    
+    <circle cx="0" cy="0" r="20" fill="none" stroke="#c94242" stroke-width="1" opacity="0.3">
+      <animate attributeName="r" from="20" to="40" dur="2s" begin="1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" from="0.3" to="0" dur="2s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Vertical divider -->
+  <line x1="200" y1="80" x2="200" y2="220" stroke="#2d4263" stroke-width="2" opacity="0.5"/>
+  
+  <!-- Typography -->
+  <g transform="translate(240, 150)">
+    <!-- Main title: CRIS -->
+    <text x="0" y="0" font-family="'Montserrat', 'Arial Black', sans-serif" font-size="82" font-weight="900" 
+          fill="url(#primaryGrad)" letter-spacing="-2">
+      CRIS
+    </text>
+    
+    <!-- Subtle glow effect on text -->
+    <text x="0" y="0" font-family="'Montserrat', 'Arial Black', sans-serif" font-size="82" font-weight="900" 
+          fill="#3d5a80" letter-spacing="-2" opacity="0.3" filter="url(#glow)">
+      CRIS
+    </text>
+    
+    <!-- Subtitle -->
+    <text x="2" y="32" font-family="'Rajdhani', 'Courier New', monospace" font-size="16" font-weight="600" 
+          fill="#6b8cae" letter-spacing="3" opacity="0.9">
+      CRIMINAL REASONING
+    </text>
+    
+    <text x="2" y="52" font-family="'Rajdhani', 'Courier New', monospace" font-size="16" font-weight="600" 
+          fill="#6b8cae" letter-spacing="3" opacity="0.9">
+      INTELLIGENCE SYSTEM
+    </text>
+    
+    <!-- Accent line -->
+    <rect x="0" y="65" width="120" height="2" fill="url(#accentGrad)" opacity="0.8"/>
+    
+    <!-- Tech tag -->
+    <g transform="translate(0, 90)">
+      <rect x="0" y="0" width="190" height="24" rx="12" fill="#1a2332" opacity="0.6"/>
+      <text x="12" y="16" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="11" 
+            font-weight="500" fill="#8aa6c1" letter-spacing="1">
+        Powered by Gemini 3 + ADK
+      </text>
+    </g>
+  </g>
+  
+  <!-- Decorative elements: data nodes -->
+  <g opacity="0.2">
+    <circle cx="720" cy="50" r="3" fill="#4a6491"/>
+    <circle cx="750" cy="80" r="2" fill="#4a6491"/>
+    <circle cx="740" cy="120" r="4" fill="#4a6491"/>
+    <circle cx="770" cy="160" r="2" fill="#4a6491"/>
+    <circle cx="730" cy="200" r="3" fill="#4a6491"/>
+    <circle cx="760" cy="240" r="2" fill="#4a6491"/>
+    
+    <line x1="720" y1="50" x2="750" y2="80" stroke="#4a6491" stroke-width="1"/>
+    <line x1="750" y1="80" x2="740" y2="120" stroke="#4a6491" stroke-width="1"/>
+    <line x1="740" y1="120" x2="770" y2="160" stroke="#4a6491" stroke-width="1"/>
+    <line x1="770" y1="160" x2="730" y2="200" stroke="#4a6491" stroke-width="1"/>
+    <line x1="730" y1="200" x2="760" y2="240" stroke="#4a6491" stroke-width="1"/>
+  </g>
+  
+  <!-- Scanning line effect (subtle animation) -->
+  <rect x="0" y="0" width="800" height="2" fill="url(#accentGrad)" opacity="0.3">
+    <animate attributeName="y" from="-2" to="302" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;0.3;0.3;0" dur="4s" repeatCount="indefinite"/>
+  </rect>
+</svg>

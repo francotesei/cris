@@ -1,0 +1,79 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a2332;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d4263;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c94242;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b2f2f;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="200" height="200" fill="#0a0e14"/>
+  
+  <g transform="translate(100, 100)">
+    <!-- Central node (larger) -->
+    <circle cx="0" cy="0" r="20" fill="url(#accentGrad)" filter="url(#glow)"/>
+    <circle cx="0" cy="0" r="15" fill="#c94242" opacity="0.8"/>
+    <circle cx="0" cy="0" r="8" fill="#ff6b6b" opacity="0.9"/>
+    
+    <!-- Surrounding nodes -->
+    <g id="nodes">
+      <circle cx="0" cy="-65" r="12" fill="url(#primaryGrad)"/>
+      <circle cx="0" cy="-65" r="7" fill="#2d4263" opacity="0.9"/>
+      
+      <circle cx="56" cy="-32" r="12" fill="url(#primaryGrad)"/>
+      <circle cx="56" cy="-32" r="7" fill="#2d4263" opacity="0.9"/>
+      
+      <circle cx="56" cy="32" r="12" fill="url(#primaryGrad)"/>
+      <circle cx="56" cy="32" r="7" fill="#2d4263" opacity="0.9"/>
+      
+      <circle cx="0" cy="65" r="12" fill="url(#primaryGrad)"/>
+      <circle cx="0" cy="65" r="7" fill="#2d4263" opacity="0.9"/>
+      
+      <circle cx="-56" cy="32" r="12" fill="url(#primaryGrad)"/>
+      <circle cx="-56" cy="32" r="7" fill="#2d4263" opacity="0.9"/>
+      
+      <circle cx="-56" cy="-32" r="12" fill="url(#primaryGrad)"/>
+      <circle cx="-56" cy="-32" r="7" fill="#2d4263" opacity="0.9"/>
+    </g>
+    
+    <!-- Connection lines -->
+    <g stroke="#4a6491" stroke-width="2.5" opacity="0.6">
+      <line x1="0" y1="0" x2="0" y2="-65"/>
+      <line x1="0" y1="0" x2="56" y2="-32"/>
+      <line x1="0" y1="0" x2="56" y2="32"/>
+      <line x1="0" y1="0" x2="0" y2="65"/>
+      <line x1="0" y1="0" x2="-56" y2="32"/>
+      <line x1="0" y1="0" x2="-56" y2="-32"/>
+      
+      <line x1="0" y1="-65" x2="56" y2="-32" opacity="0.3"/>
+      <line x1="56" y1="-32" x2="56" y2="32" opacity="0.3"/>
+      <line x1="56" y1="32" x2="0" y2="65" opacity="0.3"/>
+      <line x1="0" y1="65" x2="-56" y2="32" opacity="0.3"/>
+      <line x1="-56" y1="32" x2="-56" y2="-32" opacity="0.3"/>
+      <line x1="-56" y1="-32" x2="0" y2="-65" opacity="0.3"/>
+    </g>
+    
+    <!-- Pulse animations -->
+    <circle cx="0" cy="0" r="25" fill="none" stroke="#c94242" stroke-width="1.5" opacity="0.3">
+      <animate attributeName="r" from="25" to="50" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" from="0.3" to="0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    
+    <circle cx="0" cy="0" r="25" fill="none" stroke="#c94242" stroke-width="1.5" opacity="0.3">
+      <animate attributeName="r" from="25" to="50" dur="2s" begin="1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" from="0.3" to="0" dur="2s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

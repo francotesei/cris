@@ -1,0 +1,70 @@
+<svg width="400" height="100" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a2332;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d4263;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c94242;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b2f2f;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="400" height="100" fill="#0a0e14"/>
+  
+  <!-- Compact icon -->
+  <g transform="translate(45, 50)">
+    <circle cx="0" cy="0" r="10" fill="url(#accentGrad)" filter="url(#glow)"/>
+    <circle cx="0" cy="0" r="7" fill="#c94242" opacity="0.8"/>
+    <circle cx="0" cy="0" r="3" fill="#ff6b6b"/>
+    
+    <g stroke="#4a6491" stroke-width="1.5" opacity="0.6">
+      <line x1="0" y1="0" x2="0" y2="-28"/>
+      <line x1="0" y1="0" x2="24" y2="-14"/>
+      <line x1="0" y1="0" x2="24" y2="14"/>
+      <line x1="0" y1="0" x2="0" y2="28"/>
+      <line x1="0" y1="0" x2="-24" y2="14"/>
+      <line x1="0" y1="0" x2="-24" y2="-14"/>
+    </g>
+    
+    <g fill="url(#primaryGrad)">
+      <circle cx="0" cy="-28" r="5"/>
+      <circle cx="24" cy="-14" r="5"/>
+      <circle cx="24" cy="14" r="5"/>
+      <circle cx="0" cy="28" r="5"/>
+      <circle cx="-24" cy="14" r="5"/>
+      <circle cx="-24" cy="-14" r="5"/>
+    </g>
+  </g>
+  
+  <line x1="90" y1="30" x2="90" y2="70" stroke="#2d4263" stroke-width="1.5" opacity="0.4"/>
+  
+  <!-- Compact typography -->
+  <g transform="translate(105, 50)">
+    <text x="0" y="12" font-family="'Montserrat', 'Arial Black', sans-serif" font-size="38" font-weight="900" 
+          fill="url(#primaryGrad)" letter-spacing="-1">
+      CRIS
+    </text>
+    
+    <text x="130" y="0" font-family="'Rajdhani', 'Courier New', monospace" font-size="9" font-weight="600" 
+          fill="#6b8cae" letter-spacing="1.5">
+      CRIMINAL REASONING
+    </text>
+    
+    <text x="130" y="12" font-family="'Rajdhani', 'Courier New', monospace" font-size="9" font-weight="600" 
+          fill="#6b8cae" letter-spacing="1.5">
+      INTELLIGENCE SYSTEM
+    </text>
+    
+    <rect x="130" y="18" width="90" height="1" fill="url(#accentGrad)" opacity="0.6"/>
+  </g>
+</svg>

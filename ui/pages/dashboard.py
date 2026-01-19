@@ -6,10 +6,20 @@ Provides a high-level overview of active cases, crime hotspots, and system alert
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from pathlib import Path
 
 from ui.components.map_viewer import render_map_viewer
 
-st.title("📊 Investigative Dashboard")
+# Header with logo
+header_col1, header_col2 = st.columns([1, 4])
+with header_col1:
+    icon_path = Path(__file__).parent.parent.parent / "assets" / "cris_icon.svg"
+    if icon_path.exists():
+        st.image(str(icon_path), width=80)
+        
+with header_col2:
+    st.title("Investigative Dashboard")
+    st.caption("Real-time criminal intelligence overview")
 
 # Top Stats
 col1, col2, col3, col4 = st.columns(4)

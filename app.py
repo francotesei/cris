@@ -4,6 +4,7 @@ Configures the page layout, navigation, and global state for CRIS.
 """
 
 import streamlit as st
+from pathlib import Path
 
 from config.settings import get_settings
 from utils.logger import setup_logging
@@ -22,9 +23,14 @@ st.set_page_config(
 # Initialize logging
 setup_logging()
 
-# Sidebar Brand
-st.sidebar.title(f"🔍 {settings.app_name}")
-st.sidebar.markdown("Criminal Reasoning Intelligence")
+# Sidebar Brand with Logo
+logo_path = Path(__file__).parent / "assets" / "cris_logo_light.svg"
+if logo_path.exists():
+    st.sidebar.image(str(logo_path), use_container_width=True)
+else:
+    st.sidebar.title(f"🔍 {settings.app_name}")
+    
+st.sidebar.caption("Criminal Reasoning Intelligence System")
 st.sidebar.divider()
 
 # Navigation
