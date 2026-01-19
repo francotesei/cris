@@ -44,13 +44,18 @@ class Settings(BaseSettings):
     neo4j_password: str = "crispassword"
     neo4j_max_connection_lifetime: int = 3600
     neo4j_max_connection_pool_size: int = 50
+    neo4j_max_path_depth: int = 6
 
     # Vector Store Configuration
     vector_store_type: str = "chroma"
     chroma_persist_dir: str = "./data/chroma"
+    chroma_default_collection: str = "evidence"
     embedding_model: str = "all-MiniLM-L6-v2"
 
     # Application Configuration
+    app_name: str = "CRIS"
+    app_version: str = "0.1.0-alpha"
+    app_title: str = "CRIS - Criminal Reasoning Intelligence System"
     debug: bool = True
     log_level: str = "INFO"
     log_format: str = "console"
@@ -68,8 +73,14 @@ class Settings(BaseSettings):
 
     # Geocoding Configuration
     geocoding_provider: str = "nominatim"
+    geocoding_user_agent: str = "cris_investigative_system"
     google_maps_api_key: Optional[str] = None
     mapbox_api_key: Optional[str] = None
+    
+    # Map Defaults
+    default_map_center_lat: float = 40.7128
+    default_map_center_lon: float = -74.0060
+    default_map_zoom: int = 12
 
     # Performance Configuration
     max_concurrent_agents: int = 5

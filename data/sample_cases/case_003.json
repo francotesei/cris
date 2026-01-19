@@ -1,0 +1,51 @@
+[
+    {
+        "id": "CASE-2024-003",
+        "title": "Homicide Investigation - Riverside Park",
+        "description": "Body of unidentified male found near Riverside Park jogging trail. Apparent gunshot wound. No identification on victim.",
+        "status": "open",
+        "crime_type": "homicide",
+        "date_occurred": "2024-02-03T06:45:00",
+        "jurisdiction": "North District",
+        "priority": 5,
+        "location": {
+            "address": "Riverside Park, North Trail Entrance",
+            "lat": 40.8010,
+            "lon": -73.9680
+        },
+        "persons": [
+            {
+                "name": "Unknown Male Victim",
+                "role": "victim",
+                "description": "Male, approximately 35-40 years old, 5'10, dark hair, wearing business casual attire."
+            },
+            {
+                "name": "Elena Rodriguez",
+                "role": "witness",
+                "statement": "I was jogging around 6:30 AM when I found him. I didn't hear any gunshots earlier."
+            },
+            {
+                "name": "Thomas Wright",
+                "role": "witness",
+                "statement": "I saw a dark SUV leaving the parking lot around 5:45 AM. Seemed in a hurry."
+            }
+        ],
+        "evidence": [
+            {
+                "type": "physical",
+                "description": "9mm shell casing found 3 meters from body",
+                "file_path": "/data/evidence/shell_casing_003.jpg"
+            },
+            {
+                "type": "physical",
+                "description": "Victim's smartphone - locked, sent to forensics",
+                "file_path": "/data/evidence/phone_003_pending.txt"
+            },
+            {
+                "type": "document",
+                "description": "Autopsy report",
+                "file_path": "/data/evidence/autopsy_003.pdf"
+            }
+        ]
+    }
+]

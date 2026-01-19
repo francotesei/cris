@@ -25,7 +25,9 @@ class VectorStore(BaseVectorStore):
             settings=ChromaSettings(allow_reset=True)
         )
         # Default collection for evidence
-        self.collection = self.client.get_or_create_collection(name="evidence")
+        self.collection = self.client.get_or_create_collection(
+            name=settings.chroma_default_collection
+        )
         super().__init__(persist_dir=self.persist_dir)
 
     async def add_documents(self, documents: List[str], metadatas: Optional[List[Dict[str, Any]]] = None, ids: Optional[List[str]] = None) -> List[str]:

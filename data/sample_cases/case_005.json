@@ -1,0 +1,52 @@
+[
+    {
+        "id": "CASE-2024-005",
+        "title": "Chop Shop Operation - Warehouse District",
+        "description": "Suspected illegal vehicle dismantling operation. Anonymous tip led to surveillance of warehouse. Possible connection to vehicle theft ring.",
+        "status": "open",
+        "crime_type": "organized_crime",
+        "date_occurred": "2024-02-01T00:00:00",
+        "jurisdiction": "Industrial District",
+        "priority": 4,
+        "location": {
+            "address": "1200 Dock Street, Warehouse 7, Metropolis",
+            "lat": 40.7195,
+            "lon": -74.0089
+        },
+        "persons": [
+            {
+                "name": "Victor Kozlov",
+                "role": "suspect",
+                "description": "Owner of 'VK Auto Parts'. Prior arrests for receiving stolen property."
+            },
+            {
+                "name": "Anonymous Tipster",
+                "role": "informant",
+                "statement": "Cars go in at night, parts come out in the morning. Been going on for months."
+            },
+            {
+                "name": "Danny 'Wheels' Morrison",
+                "role": "suspect",
+                "description": "Known associate of Kozlov. Suspected driver for theft operations."
+            }
+        ],
+        "evidence": [
+            {
+                "type": "image",
+                "description": "Surveillance photos of warehouse activity",
+                "file_path": "/data/evidence/surveillance_005.zip"
+            },
+            {
+                "type": "document",
+                "description": "Business registration for VK Auto Parts",
+                "file_path": "/data/evidence/business_records_005.pdf"
+            },
+            {
+                "type": "document",
+                "description": "Victor Kozlov criminal history",
+                "file_path": "/data/evidence/criminal_record_kozlov.pdf"
+            }
+        ],
+        "linked_cases": ["CASE-2024-002"]
+    }
+]

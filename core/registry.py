@@ -4,7 +4,7 @@ Centralizes the registration and discovery of pluggable components
 (agents, providers, processors).
 """
 
-from typing import Dict, Type, TypeVar, Optional, List
+from typing import Any, Dict, Type, TypeVar, Optional, List
 
 T = TypeVar("T")
 

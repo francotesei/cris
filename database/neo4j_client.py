@@ -76,8 +76,23 @@ class Neo4jClient(BaseGraphDB):
         result = await self.execute_query(query, params)
         return len(result) > 0
 
-    async def find_shortest_path(self, start_node_id: str, end_node_id: str, max_depth: int = 6) -> List[Dict[str, Any]]:
-        """Find the shortest path using Neo4j's shortestPath function."""
+    async def find_shortest_path(
+        self,
+        start_node_id: str,
+        end_node_id: str,
+        max_depth: Optional[int] = None
+    ) -> List[Dict[str, Any]]:
+        """Find the shortest path using Neo4j's shortestPath function.
+        
+        Args:
+            start_node_id: Element ID of the start node.
+            end_node_id: Element ID of the end node.
+            max_depth: Maximum path depth. Defaults to settings.neo4j_max_path_depth.
+        """
+        settings = get_settings()
+        if max_depth is None:
+            max_depth = settings.neo4j_max_path_depth
+            
         query = f"""
         MATCH (start), (end)
         WHERE elementId(start) = $start_id AND elementId(end) = $end_id

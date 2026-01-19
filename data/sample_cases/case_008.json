@@ -1,0 +1,57 @@
+[
+    {
+        "id": "CASE-2024-008",
+        "title": "Arson Investigation - Historic Building",
+        "description": "Fire at abandoned historic theater. Accelerant detected. Third suspicious fire in historic district this year.",
+        "status": "open",
+        "crime_type": "arson",
+        "date_occurred": "2024-02-08T02:30:00",
+        "jurisdiction": "Historic District",
+        "priority": 4,
+        "location": {
+            "address": "88 Heritage Avenue, Old Metropolis Theater",
+            "lat": 40.7505,
+            "lon": -73.9934
+        },
+        "persons": [
+            {
+                "name": "Unknown Arsonist",
+                "role": "suspect",
+                "description": "Witness saw figure in dark clothing fleeing scene. Medium build."
+            },
+            {
+                "name": "Harold Fischer",
+                "role": "witness",
+                "statement": "I was walking my dog around 2 AM. Saw flames and someone running toward the alley."
+            },
+            {
+                "name": "Victoria Sterling",
+                "role": "person_of_interest",
+                "description": "Real estate developer. Has made multiple offers to purchase historic properties in area."
+            }
+        ],
+        "evidence": [
+            {
+                "type": "physical",
+                "description": "Gasoline container found near origin point",
+                "file_path": "/data/evidence/container_008.jpg"
+            },
+            {
+                "type": "document",
+                "description": "Fire marshal investigation report",
+                "file_path": "/data/evidence/fire_report_008.pdf"
+            },
+            {
+                "type": "document",
+                "description": "Insurance policy information",
+                "file_path": "/data/evidence/insurance_008.pdf"
+            },
+            {
+                "type": "video",
+                "description": "Nearby business security camera footage",
+                "file_path": "/data/evidence/security_cam_008.mp4"
+            }
+        ],
+        "linked_cases": ["CASE-2023-089", "CASE-2023-112"]
+    }
+]

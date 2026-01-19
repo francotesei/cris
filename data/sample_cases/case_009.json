@@ -1,0 +1,61 @@
+[
+    {
+        "id": "CASE-2024-009",
+        "title": "Missing Person - College Student",
+        "description": "21-year-old female student missing for 72 hours. Last seen leaving campus library. Phone last pinged near industrial area.",
+        "status": "open",
+        "crime_type": "missing_person",
+        "date_occurred": "2024-02-12T21:00:00",
+        "jurisdiction": "University District",
+        "priority": 5,
+        "location": {
+            "address": "State University Library, Metropolis",
+            "lat": 40.7302,
+            "lon": -73.9970
+        },
+        "persons": [
+            {
+                "name": "Emma Richardson",
+                "role": "victim",
+                "description": "Female, 21 years old, 5'5, 120 lbs, brown hair, blue eyes. Last seen wearing gray hoodie and jeans."
+            },
+            {
+                "name": "Michael Torres",
+                "role": "witness",
+                "statement": "I'm her boyfriend. We texted at 9 PM. She said she was leaving the library. Never came home."
+            },
+            {
+                "name": "Kayla Johnson",
+                "role": "witness",
+                "statement": "I saw Emma in the library. She seemed stressed about exams. Left around 9 PM alone."
+            },
+            {
+                "name": "Professor David Chen",
+                "role": "person_of_interest",
+                "description": "Emma's advisor. Students report he had 'unusual interest' in Emma."
+            }
+        ],
+        "evidence": [
+            {
+                "type": "digital",
+                "description": "Cell phone tower ping data",
+                "file_path": "/data/evidence/cell_data_009.pdf"
+            },
+            {
+                "type": "video",
+                "description": "Library security footage",
+                "file_path": "/data/evidence/library_cam_009.mp4"
+            },
+            {
+                "type": "document",
+                "description": "Emma's class schedule and recent communications",
+                "file_path": "/data/evidence/victim_profile_009.pdf"
+            },
+            {
+                "type": "image",
+                "description": "Recent photos of Emma for distribution",
+                "file_path": "/data/evidence/missing_poster_009.jpg"
+            }
+        ]
+    }
+]

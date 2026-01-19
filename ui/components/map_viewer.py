@@ -3,13 +3,31 @@
 Visualizes geospatial data using Folium in Streamlit.
 """
 
+from typing import List, Optional
+
 import streamlit as st
 from streamlit_folium import st_folium
 import folium
 from folium.plugins import HeatMap
 
-def render_map_viewer(df=None, center=[40.7128, -74.0060], zoom=12):
-    """Render an interactive map with markers and heatmap."""
+from config.settings import get_settings
+
+
+def render_map_viewer(df=None, center: Optional[List[float]] = None, zoom: Optional[int] = None):
+    """Render an interactive map with markers and heatmap.
+    
+    Args:
+        df: DataFrame with 'lat', 'lon', and 'type' columns.
+        center: Map center as [lat, lon]. Defaults to settings.
+        zoom: Initial zoom level. Defaults to settings.
+    """
+    settings = get_settings()
+    
+    # Use settings defaults if not provided
+    if center is None:
+        center = [settings.default_map_center_lat, settings.default_map_center_lon]
+    if zoom is None:
+        zoom = settings.default_map_zoom
     
     m = folium.Map(location=center, zoom_start=zoom)
     

@@ -10,8 +10,8 @@ from dataclasses import dataclass, field
 from enum import Enum
 
 from google import genai
-from google.adk import Agent, Tool, ToolContext
-from google.adk.agents import SequentialAgent, ParallelAgent, LoopAgent
+from google.adk.agents import Agent, SequentialAgent, ParallelAgent, LoopAgent
+from google.adk.tools import FunctionTool, ToolContext
 from google.adk.sessions import InMemorySessionService, Session
 from google.adk.runners import Runner
 from google.genai import types as genai_types
@@ -372,7 +372,7 @@ def create_tool(
     description: str,
     func: Callable,
     parameters: Optional[Dict[str, Any]] = None
-) -> Tool:
+) -> FunctionTool:
     """Helper to create ADK tools with proper metadata.
     
     Args:
@@ -382,8 +382,8 @@ def create_tool(
         parameters: JSON schema for parameters.
         
     Returns:
-        Configured ADK Tool.
+        Configured ADK FunctionTool.
     """
     func.__name__ = name
     func.__doc__ = description
-    return func
+    return FunctionTool(func=func)

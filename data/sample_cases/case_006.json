@@ -1,0 +1,56 @@
+[
+    {
+        "id": "CASE-2024-006",
+        "title": "Domestic Violence - Escalating Pattern",
+        "description": "Third reported incident at same residence. Victim has visible injuries. Suspect fled before police arrival.",
+        "status": "open",
+        "crime_type": "assault",
+        "date_occurred": "2024-02-10T22:15:00",
+        "jurisdiction": "East District",
+        "priority": 5,
+        "location": {
+            "address": "234 Oak Street, Apt 4B, Metropolis",
+            "lat": 40.7425,
+            "lon": -73.9876
+        },
+        "persons": [
+            {
+                "name": "Lisa Martinez",
+                "role": "victim",
+                "statement": "He came home drunk again. Started yelling about dinner not being ready. Then he hit me."
+            },
+            {
+                "name": "Carlos Martinez",
+                "role": "suspect",
+                "description": "Male, 38 years old, 5'11, 190 lbs. History of alcohol abuse. Active restraining order violation."
+            },
+            {
+                "name": "Jennifer Adams",
+                "role": "witness",
+                "statement": "I live next door. I heard screaming and things breaking around 10 PM. Called 911."
+            }
+        ],
+        "evidence": [
+            {
+                "type": "image",
+                "description": "Photos of victim injuries",
+                "file_path": "/data/evidence/injury_photos_006.zip"
+            },
+            {
+                "type": "document",
+                "description": "Prior incident reports (2 previous)",
+                "file_path": "/data/evidence/prior_incidents_006.pdf"
+            },
+            {
+                "type": "document",
+                "description": "Active restraining order",
+                "file_path": "/data/evidence/restraining_order_006.pdf"
+            },
+            {
+                "type": "audio",
+                "description": "911 call recording",
+                "file_path": "/data/evidence/911_call_006.mp3"
+            }
+        ]
+    }
+]

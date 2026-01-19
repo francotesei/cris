@@ -1,0 +1,72 @@
+[
+    {
+        "id": "CASE-2024-010",
+        "title": "Bank Robbery - Downtown Branch",
+        "description": "Armed robbery at First National Bank. Three masked suspects. Demand note passed to teller. Escaped with approximately $85,000.",
+        "status": "open",
+        "crime_type": "robbery",
+        "date_occurred": "2024-02-15T10:45:00",
+        "jurisdiction": "Central District",
+        "priority": 5,
+        "location": {
+            "address": "100 Financial Plaza, First National Bank, Metropolis",
+            "lat": 40.7074,
+            "lon": -74.0113
+        },
+        "persons": [
+            {
+                "name": "Unknown Suspect 1",
+                "role": "suspect",
+                "description": "Male, approximately 6'2, muscular build. Wore black ski mask and carried shotgun. Appeared to be leader."
+            },
+            {
+                "name": "Unknown Suspect 2",
+                "role": "suspect",
+                "description": "Male, approximately 5'8, slim build. Wore blue bandana. Controlled crowd."
+            },
+            {
+                "name": "Unknown Suspect 3",
+                "role": "suspect",
+                "description": "Male or female, approximately 5'6. Wore hoodie and surgical mask. Collected money."
+            },
+            {
+                "name": "Patricia Gomez",
+                "role": "witness",
+                "statement": "The tall one did all the talking. Had a deep voice. Said 'nobody move' several times. Very calm."
+            },
+            {
+                "name": "Kevin O'Brien",
+                "role": "witness",
+                "statement": "I was in line. They were in and out in under 4 minutes. Very organized. Left in a dark blue van."
+            },
+            {
+                "name": "Sandra Lee",
+                "role": "victim",
+                "statement": "I'm the teller. He slid me a note. Demanded hundreds and fifties only. Knew exactly what to ask for."
+            }
+        ],
+        "evidence": [
+            {
+                "type": "video",
+                "description": "Bank interior surveillance - multiple angles",
+                "file_path": "/data/evidence/bank_cctv_010.zip"
+            },
+            {
+                "type": "physical",
+                "description": "Demand note with handwriting",
+                "file_path": "/data/evidence/demand_note_010.jpg"
+            },
+            {
+                "type": "physical",
+                "description": "Dye pack fragments found 2 blocks away",
+                "file_path": "/data/evidence/dye_pack_010.jpg"
+            },
+            {
+                "type": "video",
+                "description": "Traffic camera footage of escape route",
+                "file_path": "/data/evidence/traffic_cam_010.mp4"
+            }
+        ],
+        "linked_cases": ["CASE-2024-001"]
+    }
+]

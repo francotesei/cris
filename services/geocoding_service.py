@@ -22,7 +22,7 @@ class GeocodingService:
             self.geocoder = GoogleV3(api_key=settings.google_maps_api_key)
         else:
             # Default to Nominatim (OpenStreetMap)
-            self.geocoder = Nominatim(user_agent="cris_investigative_system")
+            self.geocoder = Nominatim(user_agent=settings.geocoding_user_agent)
             
         self.logger.info(f"Initialized geocoding with provider: {self.provider_name}")
 

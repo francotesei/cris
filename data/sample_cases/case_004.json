@@ -1,0 +1,61 @@
+[
+    {
+        "id": "CASE-2024-004",
+        "title": "Cyber Fraud Ring - Elder Victims",
+        "description": "Organized phone scam operation targeting elderly residents. Victims tricked into providing bank details. Over $500k stolen across 23 victims.",
+        "status": "open",
+        "crime_type": "fraud",
+        "date_occurred": "2024-01-10T00:00:00",
+        "jurisdiction": "Metro-wide",
+        "priority": 4,
+        "location": {
+            "address": "Multiple locations - Metropolis Metro Area",
+            "lat": 40.7580,
+            "lon": -73.9855
+        },
+        "persons": [
+            {
+                "name": "Margaret Thompson",
+                "role": "victim",
+                "statement": "They said they were from the IRS. I gave them my Social Security number and bank account. They took $45,000."
+            },
+            {
+                "name": "Robert Williams",
+                "role": "victim",
+                "statement": "The caller had an American accent. Said my grandson was in jail and needed bail money."
+            },
+            {
+                "name": "James Miller",
+                "role": "victim",
+                "statement": "They called multiple times over a week. Very convincing. Lost my entire retirement savings."
+            },
+            {
+                "name": "Unknown Caller 1",
+                "role": "suspect",
+                "description": "Male voice, American accent, claimed to be IRS agent 'Michael Johnson'"
+            },
+            {
+                "name": "Unknown Caller 2",
+                "role": "suspect",
+                "description": "Female voice, claimed to be bank representative"
+            }
+        ],
+        "evidence": [
+            {
+                "type": "audio",
+                "description": "Recorded phone call from victim Thompson",
+                "file_path": "/data/evidence/call_recording_004a.mp3"
+            },
+            {
+                "type": "document",
+                "description": "Bank transaction records showing wire transfers",
+                "file_path": "/data/evidence/bank_records_004.pdf"
+            },
+            {
+                "type": "digital",
+                "description": "Phone number trace report - VoIP service",
+                "file_path": "/data/evidence/phone_trace_004.pdf"
+            }
+        ]
+    }
+]

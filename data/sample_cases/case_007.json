@@ -1,0 +1,56 @@
+[
+    {
+        "id": "CASE-2024-007",
+        "title": "Drug Trafficking - University Area",
+        "description": "Increased reports of drug activity near State University campus. Undercover operation identified potential distribution network.",
+        "status": "open",
+        "crime_type": "narcotics",
+        "date_occurred": "2024-01-25T00:00:00",
+        "jurisdiction": "University District",
+        "priority": 4,
+        "location": {
+            "address": "State University Campus Area, Metropolis",
+            "lat": 40.7295,
+            "lon": -73.9965
+        },
+        "persons": [
+            {
+                "name": "Tyler 'T-Money' Jackson",
+                "role": "suspect",
+                "description": "Primary dealer. 22 years old, former student. Drives black Dodge Charger."
+            },
+            {
+                "name": "Confidential Informant CI-2024-12",
+                "role": "informant",
+                "statement": "Tyler gets his supply every Thursday from someone in a silver Mercedes. Meeting spot changes weekly."
+            },
+            {
+                "name": "Unknown Supplier",
+                "role": "suspect",
+                "description": "Male, Hispanic, 30s, drives silver Mercedes C-Class. Partial plate: 7XK"
+            },
+            {
+                "name": "Ashley Brooks",
+                "role": "witness",
+                "statement": "My roommate overdosed last month. She bought from a guy everyone calls T-Money."
+            }
+        ],
+        "evidence": [
+            {
+                "type": "video",
+                "description": "Undercover surveillance footage",
+                "file_path": "/data/evidence/uc_surveillance_007.mp4"
+            },
+            {
+                "type": "document",
+                "description": "Text message records from controlled buy",
+                "file_path": "/data/evidence/text_records_007.pdf"
+            },
+            {
+                "type": "physical",
+                "description": "Seized substances - lab analysis pending",
+                "file_path": "/data/evidence/lab_pending_007.txt"
+            }
+        ]
+    }
+]

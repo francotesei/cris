@@ -8,9 +8,12 @@ import streamlit as st
 from config.settings import get_settings
 from utils.logger import setup_logging
 
+# Get settings
+settings = get_settings()
+
 # Page configuration
 st.set_page_config(
-    page_title="CRIS - Criminal Reasoning Intelligence System",
+    page_title=settings.app_title,
     page_icon="🔍",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -20,7 +23,7 @@ st.set_page_config(
 setup_logging()
 
 # Sidebar Brand
-st.sidebar.title("🔍 CRIS")
+st.sidebar.title(f"🔍 {settings.app_name}")
 st.sidebar.markdown("Criminal Reasoning Intelligence")
 st.sidebar.divider()
 
@@ -44,5 +47,5 @@ pg.run()
 
 # Sidebar Footer
 st.sidebar.divider()
-st.sidebar.caption("v0.1.0-alpha")
+st.sidebar.caption(f"v{settings.app_version}")
 st.sidebar.caption("Built for Justice with ❤️")

@@ -1,0 +1,47 @@
+[
+    {
+        "id": "CASE-2024-002",
+        "title": "Series of Vehicle Thefts - Industrial Zone",
+        "description": "Multiple high-end vehicles stolen from the industrial district parking lots over two weeks. Pattern suggests organized operation.",
+        "status": "open",
+        "crime_type": "theft",
+        "date_occurred": "2024-01-20T03:15:00",
+        "jurisdiction": "Industrial District",
+        "priority": 3,
+        "location": {
+            "address": "789 Factory Lane, Metropolis",
+            "lat": 40.7282,
+            "lon": -73.9942
+        },
+        "persons": [
+            {
+                "name": "Marcus Chen",
+                "role": "victim",
+                "statement": "My BMW M5 was parked in the secured lot. Security cameras were disabled."
+            },
+            {
+                "name": "David Park",
+                "role": "victim",
+                "statement": "Third car stolen this month from our company lot. Always luxury vehicles."
+            },
+            {
+                "name": "Unknown Male",
+                "role": "suspect",
+                "description": "Security guard reported seeing a white van circling the area nights before thefts."
+            }
+        ],
+        "evidence": [
+            {
+                "type": "document",
+                "description": "Insurance claims from 8 vehicle thefts in the area",
+                "file_path": "/data/evidence/insurance_claims_002.pdf"
+            },
+            {
+                "type": "image",
+                "description": "Traffic camera showing white van",
+                "file_path": "/data/evidence/traffic_cam_002.jpg"
+            }
+        ],
+        "linked_cases": ["CASE-2024-005"]
+    }
+]
